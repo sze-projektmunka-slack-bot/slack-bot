@@ -26,11 +26,11 @@ class AuthController extends Controller {
         $user = User::firstWhere("username", $request->username);
 
         if (empty($user)) {
-            return response()->json(["message" => "User not found"], 404);
+            return response()->json(["message" => "User not found", "errors" => ["username" => "Invalid username"]], 404);
         }
 
         if (!auth()->attempt(["username" => $request->username, "password" => $request->password])) {
-            return response()->json(["message" => "Wrong password"], 404);
+            return response()->json(["message" => "Wrong password", "errors" => ["password" => "Invalid password"]], 404);
         }
 
         $token = $user->createToken("login_token")->plainTextToken;
