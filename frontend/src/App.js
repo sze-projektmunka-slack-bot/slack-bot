@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch, Router, Route, Redirect } from "react-router";
 import { createBrowserHistory } from "history";
 import Home from "./pages/Home/Home";

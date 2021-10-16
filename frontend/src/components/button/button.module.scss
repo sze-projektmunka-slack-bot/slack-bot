@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.button {
+  text-wrap: normal;
+  max-width: 100%;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  border-radius: 0.250rem;
+  font-size: 1rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+
+  &.large {
+    font-size: 1.25rem;
+  }
+
+  &.hollow {
+    border: 1px solid;
+  }
+
+  &.blue {
+    background-color: $main-blue;
+
+    &.hollow {
+      background-color: white;
+      color: $main-blue;
+      border-color: $main-blue;
+    }
+
+    &:hover {
+      background-color: $dark-blue;
+      color: white;
+    }
+  }
+
+  &.yellow {
+    background-color: $main-yellow;
+
+    &.hollow {
+      background-color: white;
+      color: $main-yellow;
+      border-color: $main-yellow;
+    }
+
+    &:hover {
+      background-color: $dark-yellow;
+      color: white;
+    }
+  }
+
+  &.red {
+    background-color: $main-red;
+
+    &.hollow {
+      background-color: white;
+      color: $main-red;
+      border-color: $main-red;
+    }
+
+    &:hover {
+      background-color: $dark-red;
+      color: white;
+    }
+  }
+
+}
