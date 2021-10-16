@@ -1,12 +1,19 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect } from "react-router";
+import { Switch, Router, Route, Redirect } from "react-router";
+import { createBrowserHistory } from "history";
+import Home from "./pages/Home/Home";
 
 const App = () => {
+    const history = createBrowserHistory();
+
    return (
       <div className="app">
-          <Switch>
-              
-          </Switch>
+          <Router history={history}>
+              <Switch>
+                  <Route path="/home" component={Home} />
+                  <Redirect to="/home" />
+              </Switch>
+          </Router>
       </div>
    );
 };
