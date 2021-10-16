@@ -1,0 +1,51 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.inputGroup {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+
+  .error {
+    color: $dark-red;
+    font-size: 1.5rem;
+    font-weight: bold;
+    @include md {
+      font-size: 1rem;
+    }
+    @include lg {
+      font-size: 0.75rem;
+    }
+  }
+
+  label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    @include md {
+      font-size: 1rem;
+    }
+    @include lg {
+      font-size: 0.75rem;
+    }
+  }
+
+  .input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 0.25rem;
+    background-color: $grey;
+    font-size: 1.2rem;
+
+    &.inputError {
+      border: 1px solid $dark-red;
+    }
+
+    @include lg {
+      font-size: 1rem;
+      padding: 0.6rem 0.8rem;
+    }
+  }
+}
