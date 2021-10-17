@@ -4,6 +4,7 @@ import Button from "../../components/button/button";
 import InputField from "../../components/input-field/inputField";
 import CheckerField from "../../components/checker-field/checkerField";
 import {options} from "jest-runtime/build/cli/args";
+import ImageSelectField from "../../components/image-select-field/imageSelectField";
 
 const Home = (props) => {
     return (
@@ -165,6 +166,42 @@ const Home = (props) => {
                     },
                     {
                         label: "Option 3",
+                        value: "option_3"
+                    }
+                ]}/>
+                <ImageSelectField label="Teszt label error" reduxFormData={{
+                    input: {},
+                    meta: {
+                        touched: true,
+                        error: "Ez egy error, ajjaj!"
+                    },
+                }} options={[
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/500/400",
                         value: "option_3"
                     }
                 ]}/>
