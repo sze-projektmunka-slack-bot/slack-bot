@@ -6,8 +6,15 @@ import CheckerField from "../../components/checker-field/checkerField";
 import {options} from "jest-runtime/build/cli/args";
 import ImageSelectField from "../../components/image-select-field/imageSelectField";
 import SelectField from "../../components/select-field/selectField";
+import * as toastr from "toastr";
+
 
 const Home = (props) => {
+    function testNotifications() {
+        toastr.warning('Lorem ipsum dolor sit amet, consectetur', 'Lorem ipsum');
+        toastr.success('Lorem ipsum dolor sit amet, consectetur', 'Lorem ipsum');
+        toastr.error('Lorem ipsum dolor sit amet, consectetur', 'Lorem ipsum');
+    }
     return (
         <Page title="Bemutató oldal">
             <h3>Gombok</h3>
@@ -317,6 +324,10 @@ const Home = (props) => {
                     }
                 ]}/>
 
+            </div>
+            <h2>toastr.js</h2>
+            <div>
+                <Button onClick={testNotifications}>click to display test notification</Button>
             </div>
         </Page>
     );

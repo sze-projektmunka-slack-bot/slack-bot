@@ -1,0 +1,19 @@
+@import "variables";
+
+#toast-container{
+
+  .toast{
+    opacity: 1;
+    &.toast-error{
+      background-color: $dark-red;
+    }
+    &.toast-success{
+      background-color: $dark-blue;
+    }
+    &.toast-warning{
+      background-color: $dark-yellow;
+    }
+
+  }
+
+}
