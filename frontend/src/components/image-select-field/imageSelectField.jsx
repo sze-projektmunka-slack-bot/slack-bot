@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import classes from "./imageSelectField.module.scss";
 import * as url from "url";
+import {random} from "nanoid";
 
 const ImageSelectField = (props) => {
     //type csak checkbox vagy radio
@@ -32,8 +33,8 @@ const ImageSelectField = (props) => {
             {reduxFormData && reduxFormData.meta.touched && reduxFormData.meta.error &&
             <span className={classes.error}>{reduxFormData.meta.error}</span>}
             <div className={classes.choicesWrapper}>
-            {options.map((option) => {
-                return <label className={classes.optionLabel} style={{backgroundImage: `url(${option.image})`}}><input
+            {options.map((option, key) => {
+                return <label key={key} className={classes.optionLabel} style={{backgroundImage: `url(${option.image})`}}><input
                     type="checkbox"
                     className={
                         classNames(

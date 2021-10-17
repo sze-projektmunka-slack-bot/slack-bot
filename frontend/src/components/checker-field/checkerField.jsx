@@ -30,8 +30,8 @@ const CheckerField = (props) => {
             <label>{label}</label>
             {reduxFormData && reduxFormData.meta.touched && reduxFormData.meta.error &&
             <span className={classes.error}>{reduxFormData.meta.error}</span>}
-            {options.map((option) => {
-                return <label className={classes.optionLabel}><input
+            {options.map((option, key) => {
+                return <label key={key} className={classes.optionLabel}><input
                     type={type ?? "checkbox"}
                     className={
                         classNames(

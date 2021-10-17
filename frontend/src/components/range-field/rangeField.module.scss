@@ -1,0 +1,20 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.inputGroup {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+.error {
+   color: $dark-red;
+   font-size: 1.5rem;
+   font-weight: bold;
+   @include md {
+     font-size: 1rem;
+   }
+   @include lg {
+     font-size: 0.75rem;
+   }
+ }

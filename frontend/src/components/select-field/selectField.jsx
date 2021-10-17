@@ -23,8 +23,8 @@ const SelectField = (props) => {
                             classes.input,
                             reduxFormData && reduxFormData.meta.touched && reduxFormData.meta.error ? classes.inputError : "")}
                 >
-                    {options.map((option) => {
-                        return <option value={option.value}>{option.label}</option>
+                    {options.map((option, key) => {
+                        return <option key={key} value={option.value}>{option.label}</option>
                     })}
                 </select>
             </div>

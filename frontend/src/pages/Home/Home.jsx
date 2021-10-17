@@ -7,6 +7,7 @@ import {options} from "jest-runtime/build/cli/args";
 import ImageSelectField from "../../components/image-select-field/imageSelectField";
 import SelectField from "../../components/select-field/selectField";
 import * as toastr from "toastr";
+import RangeField from "../../components/range-field/rangeField";
 
 
 const Home = (props) => {
@@ -328,6 +329,15 @@ const Home = (props) => {
             <h2>toastr.js</h2>
             <div>
                 <Button onClick={testNotifications}>click to display test notification</Button>
+            </div>
+            <h2>Range Slider</h2>
+            <div>
+                <RangeField label="range" />
+                <RangeField label="range min={0} max={500}" min={0} max={500}/>
+                <RangeField label="range min={-100} max={100}" min={-100} max={100}/>
+                <RangeField label="range min={-100} max={100} step={10}" min={-100} max={100} step={10}/>
+                <RangeField label="range yellow" color="yellow" />
+                <RangeField label="range red" color="red" />
             </div>
         </Page>
     );
