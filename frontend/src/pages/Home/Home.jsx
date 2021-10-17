@@ -5,6 +5,7 @@ import InputField from "../../components/input-field/inputField";
 import CheckerField from "../../components/checker-field/checkerField";
 import {options} from "jest-runtime/build/cli/args";
 import ImageSelectField from "../../components/image-select-field/imageSelectField";
+import SelectField from "../../components/select-field/selectField";
 
 const Home = (props) => {
     return (
@@ -169,6 +170,43 @@ const Home = (props) => {
                         value: "option_3"
                     }
                 ]}/>
+                <h2>Image select fields</h2>
+                <ImageSelectField label="Teszt label" reduxFormData={{
+                    input: {},
+                    meta: {
+                        touched: false,
+                        error: "Ez egy error, ajjaj!"
+                    },
+                }} options={[
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/300/300",
+                        value: "option_1"
+                    },
+                    {
+                        image: "https://placekitten.com/400/400",
+                        value: "option_2"
+                    },
+                    {
+                        image: "https://placekitten.com/500/400",
+                        value: "option_3"
+                    }
+                ]}/>
                 <ImageSelectField label="Teszt label error" reduxFormData={{
                     input: {},
                     meta: {
@@ -205,7 +243,79 @@ const Home = (props) => {
                         value: "option_3"
                     }
                 ]}/>
-
+                <h2>Select fields</h2>
+                <SelectField label="Teszt label" reduxFormData={{
+                    input: {},
+                    meta: {
+                        touched: false,
+                        error: "Ez egy error, ajjaj!"
+                    },
+                }} options={[
+                    {
+                        label: "Please select...",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_3"
+                    }
+                ]}/>
+                <SelectField label="Teszt label error" reduxFormData={{
+                    input: {},
+                    meta: {
+                        touched: true,
+                        error: "Ez egy error, ajjaj!"
+                    },
+                }} options={[
+                    {
+                        label: "Please select...",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_1"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_2"
+                    },
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_3"
+                    }
+                ]}/>
 
             </div>
         </Page>
