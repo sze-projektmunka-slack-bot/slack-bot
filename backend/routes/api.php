@@ -18,3 +18,12 @@ Route::group([
          ->middleware("auth:sanctum")
          ->name("logout");
 });
+
+Route::group([
+    "prefix" => "triggers",
+    "as"     => "triggers.",
+    //"middleware" => "auth:sanctum"
+], function () {
+    Route::get("/", [\App\Http\Controllers\Api\TriggerController::class, "list"])
+        ->name("list");
+});

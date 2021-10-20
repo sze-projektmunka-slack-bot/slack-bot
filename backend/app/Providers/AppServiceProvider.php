@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Classes\Triggers\Mention;
+use App\Classes\Triggers\Message;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton("registered_triggers", function () {
+            return [
+                Mention::class,
+                Message::class,
+            ];
+        });
     }
 }
