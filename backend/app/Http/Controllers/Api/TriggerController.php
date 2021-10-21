@@ -10,9 +10,17 @@ class TriggerController extends Controller {
         $triggers = [];
 
         foreach (app("registered_triggers") as $trigger) {
+            $responses = [];
+
+            foreach($trigger::GetResponses() as $response) {
+                $responses[] = $response::GetIdentifier();
+            }
+
             $triggers[] = [
+                "identifier" => $trigger::GetIdentifier(),
                 "name" => $trigger::GetName(),
-                "inputs" => $trigger::GetInputs()
+                "inputs" => $trigger::GetInputs(),
+                "responses" => $responses,
             ];
         }
 

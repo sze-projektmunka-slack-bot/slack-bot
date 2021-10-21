@@ -2,9 +2,17 @@
 
 namespace App\Classes\Triggers;
 
+use App\Classes\BaseTrigger;
+use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
 
-class Message implements TriggerInterface{
+class Message extends BaseTrigger implements TriggerInterface{
+
+    public static function GetIdentifier(): string {
+        return "trigger_message";
+    }
+
+
     public static function GetName() :string {
         return "Üzenet";
     }
@@ -23,11 +31,18 @@ class Message implements TriggerInterface{
         return "message";
     }
 
-    private array $inputValues;
-
-    public function __construct(array $inputValues) {
-        $this->inputValues = $inputValues;
+    public static function GetResponses(): array {
+        return [
+            SimpleMessage::class
+        ];
     }
+
+    public static function GetValidationRules(): array {
+        return [
+            "trigger_message" => "required|string"
+        ];
+    }
+
 
     public function GetTrigger() :string {
         return $this->inputValues["trigger_message"];
