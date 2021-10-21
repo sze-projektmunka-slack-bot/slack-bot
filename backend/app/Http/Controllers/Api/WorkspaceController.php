@@ -13,24 +13,38 @@ class WorkspaceController extends Controller {
         $client_id = config("slack_bot.client_id");
         $client_secret = config("slack_bot.client_secret");
 
-        $raw_response = shell_exec("curl -F code={$request->code} -F client_id={$client_id} -F client_secret={$client_secret} https://slack.com/api/oauth.v2.access");
+        $oauth_raw_response = shell_exec(
+            "curl -F code={$request->code} -F client_id={$client_id} -F client_secret={$client_secret} https://slack.com/api/oauth.v2.access"
+        );
 
-        $response = json_decode($raw_response, true);
+        $oauth_response = json_decode($oauth_raw_response, true);
 
-        if(!$response["ok"]) {
+        if (!$oauth_response["ok"]) {
+            return response()->json(null, 400);
+        }
+
+        $bot_test_raw_response = shell_exec(
+            'curl https://slack.com/api/auth.test -H "Accept: application/json" -H "Authorization: Bearer ' . $oauth_response["access_token"] . '"'
+        );
+
+        $bot_test_response = json_decode($bot_test_raw_response, true);
+
+        if (!$bot_test_response["ok"] || empty($bot_test_response["bot_id"])) {
             return response()->json(null, 400);
         }
 
         $workspace = Workspace::create([
             "user_id" => auth()->id(),
-            "access_token" => $response["access_token"],
-            "team_name" => $response["team"]["name"],
-            "team_id" => $response["team"]["id"],
+            "access_token" => $oauth_response["access_token"],
+            "team_name" => $oauth_response["team"]["name"],
+            "team_id" => $oauth_response["team"]["id"],
+            "bot_user_id" => $oauth_response["bot_user_id"],
+            "bot_id" => $bot_test_response["bot_id"]
         ]);
 
         return response()->json([
             "workspace_id" => $workspace->id,
-            "team_name" => $workspace->team_name
+            "team_name"    => $workspace->team_name
         ]);
     }
 }
