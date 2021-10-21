@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 Route::group([
     "prefix" => "auth",
@@ -22,8 +20,17 @@ Route::group([
 Route::group([
     "prefix" => "triggers",
     "as"     => "triggers.",
-    //"middleware" => "auth:sanctum"
+    //"middleware" => "auth:sanctum" TODO
 ], function () {
     Route::get("/", [\App\Http\Controllers\Api\TriggerController::class, "list"])
         ->name("list");
+});
+
+Route::group([
+    "prefix" => "workspaces",
+    "as"     => "workspaces.",
+    "middleware" => "auth:sanctum"
+], function () {
+    Route::post("/", [\App\Http\Controllers\Api\WorkspaceController::class, "create"])
+        ->name("create");
 });
