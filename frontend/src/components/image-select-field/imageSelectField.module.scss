@@ -8,8 +8,9 @@
   flex-direction: column;
   margin: 0.75rem 0;
   &.inputError {
-    border-top: 1px solid $dark-red;
-    border-bottom: 1px solid $dark-red;
+    border-left: 2px solid $main-red;
+    margin-left: calc(-0.5rem - 2px);
+    padding-left: calc(0.5rem);
   }
 
   .choicesWrapper{
@@ -21,7 +22,7 @@
   }
 
   .error {
-    color: $dark-red;
+    color: $main-red;
     font-size: 1.5rem;
     font-weight: bold;
     @include md {
