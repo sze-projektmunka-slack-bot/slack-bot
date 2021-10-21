@@ -1,5 +1,8 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
 .inputGroup {
 
@@ -9,9 +12,10 @@
   margin: 0.75rem 0;
 
   .error {
-    color: $dark-red;
+    color: $main-red;
     font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 0.3rem;
     @include md {
       font-size: 1rem;
     }
@@ -34,7 +38,10 @@
   .selectWrapper {
     position: relative;
     &:before {
-      content: "ˇ";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f078";
+      font-size: 1rem;
       display: flex;
       position: absolute;
       top: 1rem;
@@ -46,12 +53,12 @@
       border-radius: 0.25rem;
       justify-content: center;
       align-content: center;
-      font-size: 2rem;
       color: white;
       @include lg {
         top: 0.6rem;
         right: 0.5rem;
-        font-size: 1.8rem;
+        font-size: 1rem;
+        line-height: 1.3rem;
       }
     }
     .input {
@@ -65,7 +72,7 @@
       position: relative;
 
       &.inputError {
-        border: 1px solid $dark-red;
+        border: 1px solid $main-red;
       }
 
       @include lg {
