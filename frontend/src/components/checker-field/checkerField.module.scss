@@ -8,14 +8,17 @@
   flex-direction: column;
   margin: 0.75rem 0;
   &.inputError {
-    border-top: 1px solid $dark-red;
-    border-bottom: 1px solid $dark-red;
+    border-left: 2px solid $main-red;
+    margin-left: calc(-0.5rem - 2px);
+    padding-left: calc(0.5rem + 2px);
   }
 
   .error {
-    color: $dark-red;
+    color: $main-red;
     font-size: 1.5rem;
     font-weight: bold;
+    margin-top: -0.3rem;
+    margin-bottom: 0.3rem;
     @include md {
       font-size: 1rem;
     }
@@ -26,18 +29,23 @@
 
   label {
     font-size: 1.5rem;
+    line-height: 1.5rem;
     font-weight: bold;
     max-width: 8rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.35rem;
     @include md {
       font-size: 1rem;
+      line-height: 1rem;
     }
     @include lg {
       font-size: 0.75rem;
+      line-height: 0.75rem;
     }
     &.optionLabel{
       display: flex;
       align-items: center;
+      margin-bottom: 0.0rem;
+      font-weight: normal;
     }
   }
 
