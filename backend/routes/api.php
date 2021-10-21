@@ -31,6 +31,8 @@ Route::group([
     "as"     => "workspaces.",
     "middleware" => "auth:sanctum"
 ], function () {
+    Route::get("/", [\App\Http\Controllers\Api\WorkspaceController::class, "list"])
+        ->name("list");
     Route::post("/", [\App\Http\Controllers\Api\WorkspaceController::class, "create"])
         ->name("create");
 });

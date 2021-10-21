@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class WorkspaceController extends Controller {
 
+    public function list() {
+        $workspaces = Workspace::where("user_id", auth()->id())->get()->map(function ($workspace) {
+            return [
+                "workspace_id" => $workspace->id,
+                "team_name" => $workspace->team_name
+            ];
+        });
+
+        return response()->json($workspaces);
+    }
+
     public function create(CreateWorkspaceRequest $request) {
         $client_id = config("slack_bot.client_id");
         $client_secret = config("slack_bot.client_secret");
