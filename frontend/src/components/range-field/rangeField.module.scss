@@ -6,6 +6,20 @@
   gap: 1rem;
   align-items: center;
   margin: 0.5rem 0;
+
+  & label{
+    margin-top: -1.3rem;
+    @include md {
+      margin-top: -1.2rem;
+    }
+    @include lg {
+      margin-top: -1.1rem;
+    }
+    @include xl {
+      margin-top: -1rem;
+    }
+  }
+
 }
 .error {
    color: $dark-red;
