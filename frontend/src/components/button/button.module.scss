@@ -8,14 +8,19 @@
   padding: 0.5rem 1.5rem;
   color: white;
   border-radius: 0.250rem;
-  font-size: 1rem;
   margin: 0.5rem 0.5rem 0.5rem 0;
   border: 2px solid;
   transition: all 200ms ease-in-out;
   font-weight: 500;
-
+  font-size: $font-small-sm-button;
+  @include lg{
+    font-size: $font-large-sm-button;
+  }
   &.large {
-    font-size: 1.25rem;
+    font-size: $font-small-lg-button;
+    @include lg{
+      font-size: $font-large-lg-button;
+    }
   }
 
   &.blue {

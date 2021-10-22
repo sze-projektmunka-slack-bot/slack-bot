@@ -10,25 +10,21 @@
 
   .error {
     color: $main-red;
-    font-size: 1.5rem;
     font-weight: bold;
-    @include md {
-      font-size: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
+    font-size: $font-small-input-label-text;
+    line-height: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+      line-height: $font-large-input-label-text;
     }
   }
 
   label {
-    font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 0.25rem;
-    @include md {
-      font-size: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
+    font-size: $font-small-label;
+    @include lg{
+      font-size: $font-large-label;
     }
   }
 
@@ -38,8 +34,12 @@
     border: none;
     border-radius: 0.25rem;
     background-color: $grey;
-    font-size: 1.2rem;
-    line-height: 1.2rem;
+    font-size: $font-small-input-label-text;
+    line-height: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+      line-height: $font-large-input-label-text;
+    }
 
     &:focus, &:active{
       border-color: darken($grey, 70);
@@ -51,8 +51,6 @@
     }
 
     @include lg {
-      font-size: 1rem;
-      line-height: 1rem;
       padding: 0.6rem 0.8rem;
     }
   }

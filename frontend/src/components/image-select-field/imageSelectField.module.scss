@@ -23,26 +23,22 @@
 
   .error {
     color: $main-red;
-    font-size: 1.5rem;
     font-weight: bold;
-    @include md {
-      font-size: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
     }
   }
 
   label {
-    font-size: 1.5rem;
     font-weight: bold;
     max-width: 8rem;
     margin-bottom: 0.25rem;
-    @include md {
-      font-size: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
+    font-size: $font-small-label;
+    line-height: $font-small-label;
+    @include lg{
+      font-size: $font-large-label;
+      line-height: $font-large-label;
     }
     &.optionLabel{
       display: flex;
@@ -52,7 +48,10 @@
       width: 10rem !important;
       height: 8rem !important;
       border-radius: 0.5rem !important;
-
+      font-size: $font-small-input-label-text;
+      @include lg{
+        font-size: $font-large-input-label-text;
+      }
       &:hover{
         transform: scale(1.05);
       }

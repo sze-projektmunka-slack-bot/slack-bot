@@ -19,16 +19,24 @@
       margin-top: -1rem;
     }
   }
-
+  p {
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
+  }
+  label{
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
+  }
 }
 .error {
-   color: $dark-red;
-   font-size: 1.5rem;
-   font-weight: bold;
-   @include md {
-     font-size: 1rem;
-   }
-   @include lg {
-     font-size: 0.75rem;
-   }
+  color: $dark-red;
+  font-weight: bold;
+  font-size: $font-small-input-label-text;
+  @include lg{
+    font-size: $font-large-input-label-text;
+  }
  }

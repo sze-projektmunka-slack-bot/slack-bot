@@ -15,37 +15,37 @@
 
   .error {
     color: $main-red;
-    font-size: 1.5rem;
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
     font-weight: bold;
     margin-top: -0.3rem;
     margin-bottom: 0.3rem;
-    @include md {
-      font-size: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
-    }
   }
 
   label {
-    font-size: 1.5rem;
-    line-height: 1.5rem;
+    font-size: $font-small-label;
+    line-height: $font-small-label;
+    @include lg{
+      font-size: $font-large-label;
+      line-height: $font-large-label;
+    }
     font-weight: bold;
-    max-width: 8rem;
+    max-width: 100%;
+    @include lg{
+      max-width: 10rem;
+    }
     margin-bottom: 0.35rem;
-    @include md {
-      font-size: 1rem;
-      line-height: 1rem;
-    }
-    @include lg {
-      font-size: 0.75rem;
-      line-height: 0.75rem;
-    }
     &.optionLabel{
       display: flex;
       align-items: center;
       margin-bottom: 0.0rem;
       font-weight: normal;
+      font-size: $font-small-input-label-text;
+      @include lg{
+        font-size: $font-large-input-label-text;
+      }
     }
   }
 
@@ -58,10 +58,6 @@
     -webkit-appearance: none;
     display: inline-block;
     position: relative;
-
-    @include lg {
-      font-size: 1rem;
-    }
 
     &:after {
       content: '';
