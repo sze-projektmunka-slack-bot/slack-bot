@@ -3,7 +3,6 @@ import Page from "../../components/page/page";
 import Button from "../../components/button/button";
 import InputField from "../../components/input-field/inputField";
 import CheckerField from "../../components/checker-field/checkerField";
-import {options} from "jest-runtime/build/cli/args";
 import ImageSelectField from "../../components/image-select-field/imageSelectField";
 import SelectField from "../../components/select-field/selectField";
 import * as toastr from "toastr";
