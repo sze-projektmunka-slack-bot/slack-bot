@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.page {
+  padding: 3rem;
+  width: 95%;
+
+  @include md {
+    width: 90%;
+  }
+  @include lg {
+    width: 80%;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+  }
+
+
+  &.card {
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 18px -4px #000000;
+  }
+}

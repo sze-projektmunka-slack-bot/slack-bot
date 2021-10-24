@@ -1,0 +1,30 @@
+@import "variables";
+
+#toast-container{
+
+  .toast{
+    opacity: 1;
+    background-position-x: 15px;
+    background-size: 50px 50px;
+    padding-left: 80px;
+    border-radius: 5px;
+    &.toast-error{
+      background-color: $dark-red;
+      background-image: url(../assets/notification-icons/error-icon.svg) !important;
+    }
+    &.toast-success{
+      background-color: $dark-blue;
+      background-image: url(../assets/notification-icons/success-icon.svg) !important;
+    }
+    &.toast-warning{
+      background-color: $dark-yellow;
+      background-image: url(../assets/notification-icons/warning-icon.svg) !important;
+    }
+    &.toast-info{
+      background-color: $dark-blue;
+      background-image: url(../assets/notification-icons/information-icon.svg) !important;
+    }
+
+  }
+
+}
