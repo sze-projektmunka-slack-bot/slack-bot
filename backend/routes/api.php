@@ -18,7 +18,7 @@ Route::group([
 Route::group([
     "prefix" => "triggers",
     "as"     => "triggers.",
-    //"middleware" => "auth:sanctum" TODO
+    "middleware" => "auth:sanctum"
 ], function () {
     Route::get("/", [\App\Http\Controllers\Api\TriggerController::class, "list"])->name("list");
 });
@@ -43,6 +43,13 @@ Route::group([
         "as"         => "workspaces.",
     ], function () {
         Route::get("/", [\App\Http\Controllers\Api\Bot\WorkspaceController::class, "list"])->name("list");
+    });
+
+    Route::group([
+        "prefix"     => "rules",
+        "as"         => "rules.",
+    ], function () {
+        Route::get("/", [\App\Http\Controllers\Api\Bot\RulesController::class, "list"])->name("list");
     });
 });
 
