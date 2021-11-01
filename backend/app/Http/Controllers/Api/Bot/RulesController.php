@@ -3,36 +3,25 @@
 namespace App\Http\Controllers\Api\Bot;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rule;
 use Illuminate\Http\Request;
 
 class RulesController extends Controller {
     public function list() {
-        //TODO ezt majd dbből szedni
-        $data = [
-            [
-                "workspace_id" => 2,
-                "listen"   => [
-                    "type"    => "message",
-                    "content" => "hello"
+        $rules = Rule::all()->map(function ($rule) {
+            return [
+                "workspace_id" => $rule->workspace_id,
+                "listen" => [
+                    "type" => $rule->trigger_type,
+                    "content" => $rule->trigger_content
                 ],
                 "response" => [
-                    "type"    => "string",
-                    "content" => "Hello there"
+                    "type" => $rule->response_type,
+                    "content" => $rule->response_content
                 ]
-            ],
-            [
-                "workspace_id" => 1,
-                "listen"   => [
-                    "type"    => "message",
-                    "content" => "hey"
-                ],
-                "response" => [
-                    "type"    => "string",
-                    "content" => "Hey"
-                ]
-            ],
-        ];
+            ];
+        });
 
-        return response()->json($data);
+        return response()->json($rules);
     }
 }
