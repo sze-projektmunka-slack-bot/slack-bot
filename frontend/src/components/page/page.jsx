@@ -6,8 +6,8 @@ const Page = (props) => {
     const {title, children, noCard} = props;
     return (
         <div className={classNames(classes.page, !noCard ? classes.card : "")}>
-            {title ? <h2 className={classNames(classes.title)}>{title}</h2> : null}
-            <div>
+            <div className={classNames(classes.container)}>
+                {title ? <h2 className={classNames(classes.title)}>{title}</h2> : null}
                 {children}
             </div>
         </div>
