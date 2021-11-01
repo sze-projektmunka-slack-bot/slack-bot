@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+   background: white;
+   width: 100%;
+
+   .container {
+      width: 95%;
+      margin: 1.5rem auto;
+      display: flex;
+      align-items: center;
+
+      @include md {
+         width: 90%;
+      }
+      @include lg {
+         width: 70%;
+      }           
+   }
+
+   .logo {
+      height: 2.5rem;
+   }
+
+   .logout {
+      margin-left: auto;
+      margin-right: 0;
+   }
+}
