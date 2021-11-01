@@ -5,7 +5,7 @@
   text-wrap: normal;
   max-width: 100%;
   text-align: center;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 2.5rem;
   color: white;
   border-radius: 0.250rem;
   margin: 0.5rem 0.5rem 0.5rem 0;
@@ -28,7 +28,7 @@
     border-color: $main-blue;
 
     &.hollow {
-      background-color: white;
+      background-color: transparent;
       color: $main-blue;
     }
 
