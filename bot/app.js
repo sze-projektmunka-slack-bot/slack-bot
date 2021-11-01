@@ -1,15 +1,15 @@
 import fetch from 'node-fetch';
 import bolt from '@slack/bolt';
-const { App } = bolt;
 import dotenv from 'dotenv';
+const { App } = bolt;
 
 const result = dotenv.config();
 if (result.error) {
     console.error('Dotenv error: ' + result.error);
 }
 
-let installations = await fetchBackend('/api/bot/workspaces');
-let rules = await fetchBackend('/api/bot/rules');
+const installations = fetchBackend('/api/bot/workspaces');
+const rules = fetchBackend('/api/bot/rules');
 
 const authorizer = async ({ teamId }) => {
     for (const team of installations) {
@@ -17,43 +17,43 @@ const authorizer = async ({ teamId }) => {
             return {
                 botToken: team.access_token,
                 botId: team.bot_id,
-                botUserId: team.bot_user_id,
+                botUserId: team.bot_user_id
             };
         }
     }
 
     console.error('Auth error: no matching authorization');
-}
+};
 
 const app = new App({
     authorize: authorizer,
     appToken: process.env.APP_TOKEN,
     signingSecret: process.env.SIGNING_SECRET,
-    socketMode: process.env.SOCKET_MODE,
+    socketMode: process.env.SOCKET_MODE
 });
 
 app.event(/.*/, async ({ event, client }) => {
-    let team_id;
-    let self_id;
+    let teamId;
+    let selfId;
 
     for (const installation of installations) {
         if (event.team == installation.team_id) {
-            team_id = installation.workspace_id;
-            self_id = installation.bot_user_id;
+            teamId = installation.workspace_id;
+            selfId = installation.bot_user_id;
         }
     }
-    
-    if (event.user_id != self_id) {
-        for (const rule of rules) {
-            if (rule.workspace_id == team_id) {
 
-                if (rule.listen.type == "message") {
+    if (event.user_id != selfId) {
+        for (const rule of rules) {
+            if (rule.workspace_id == teamId) {
+
+                if (rule.listen.type == 'message') {
                     if (rule.listen.content == event.text && !event.subtype) {
                         sendMessage(event, client, rule.response.content);
                     }
                 }
-                
-                else if (rule.listen.type == "event") {
+
+                else if (rule.listen.type == 'event') {
                     if (rule.listen.content == event.type) {
                         sendMessage(event, client, rule.response.content);
                     }
@@ -74,9 +74,9 @@ app.event(/.*/, async ({ event, client }) => {
 
 async function fetchBackend(path) {
     let response;
-    await fetch( process.env.BACKEND_URL + path, {headers: {"api-key": process.env.BACKEND_API_KEY, "accept":"application/json"}})
+    await fetch(process.env.BACKEND_URL + path, { headers: { 'api-key': process.env.BACKEND_API_KEY, accept: 'application/json' } })
         .then(response => response.json())
-        .then(data => { response = data });
+        .then(data => { response = data; });
     return response;
 }
 
@@ -85,10 +85,10 @@ async function sendMessage(event, client, content) {
     await client.chat.postMessage({
         channel: event.channel,
         blocks: [{
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": content
+            type: 'section',
+            text: {
+                type: 'mrkdwn',
+                text: content
             }
         }],
         text: content
