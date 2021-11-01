@@ -32,23 +32,38 @@ const app = new App({
     socketMode: process.env.SOCKET_MODE,
 });
 
-app.message(/.*/, async ({ message, say }) => {
+app.event(/.*/, async ({ event, client }) => {
     let team_id;
+    let self_id;
 
     for (const installation of installations) {
-        if (message.team == installation.team_id) {
+        if (event.team == installation.team_id) {
             team_id = installation.workspace_id;
+            self_id = installation.bot_user_id;
         }
     }
+    
+    if (event.user_id != self_id) {
+        for (const rule of rules) {
+            if (rule.workspace_id == team_id) {
 
-    for (const rule of rules) {
-        if (rule.workspace_id == team_id && rule.listen.type == "message") {
-            if (message.text == rule.listen.content) {
-                await say(rule.response.content);
+                if (rule.listen.type == "message") {
+                    if (rule.listen.content == event.text && !event.subtype) {
+                        sendMessage(event, client, rule.response.content);
+                    }
+                }
+                
+                else if (rule.listen.type == "event") {
+                    if (rule.listen.content == event.type) {
+                        sendMessage(event, client, rule.response.content);
+                    }
+                }
+
             }
         }
     }
 });
+
 
 (async () => {
     await app.start(process.env.PORT || 3000);
@@ -56,10 +71,26 @@ app.message(/.*/, async ({ message, say }) => {
     console.log('Bolt app running!');
 })();
 
+
 async function fetchBackend(path) {
     let response;
     await fetch( process.env.BACKEND_URL + path, {headers: {"api-key": process.env.BACKEND_API_KEY, "accept":"application/json"}})
         .then(response => response.json())
         .then(data => { response = data });
     return response;
+}
+
+// A content egyenlore csak string, de kesobb alljunk at blocksra
+async function sendMessage(event, client, content) {
+    await client.chat.postMessage({
+        channel: event.channel,
+        blocks: [{
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": content
+            }
+        }],
+        text: content
+    });
 }
