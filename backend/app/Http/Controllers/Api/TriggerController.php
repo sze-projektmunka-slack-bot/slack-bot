@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Services\TriggerService;
 use Illuminate\Http\Request;
 
 class TriggerController extends Controller {
     public function list() {
         $triggers = [];
 
-        foreach (app("registered_triggers") as $trigger) {
+        foreach (TriggerService::GetRegisteredTriggers() as $trigger) {
             $responses = [];
 
             foreach($trigger::GetResponses() as $response) {
