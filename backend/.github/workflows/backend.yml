@@ -1,0 +1,22 @@
+name: 🚀 Deploy backend
+on:
+  push:
+    branches:
+      - backend
+jobs:
+  deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: 🚚 Get latest code
+        uses: sebastianpopp/git-ftp-action@releases/v3
+        with:
+          url: ${{ secrets.FTP_URL }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          options: "--auto-init --force"
+      - name: ⬆ Migrate
+        uses: wei/wget@v1
+        with:
+          args: ${{ secrets.UPDATE_URL }}/migrate

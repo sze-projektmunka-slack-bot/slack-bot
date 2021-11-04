@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::any("/", function () {
     return "server running";
 });
+
+Route::any("/migrate", function () {
+    Artisan::call('migrate', [
+        '--force' => true,
+    ]);
+});
