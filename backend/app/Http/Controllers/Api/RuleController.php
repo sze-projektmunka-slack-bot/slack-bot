@@ -13,8 +13,12 @@ class RuleController extends Controller
         $trigger = TriggerService::GetTrigger($request->trigger_identifier);
         $response = ResponseService::GetResponse($request->response_identifier);
 
-        if(empty($trigger) || empty($response)) {
-            //error
+        if(empty($trigger)) {
+            return response()->json(["message" => "Hibás eseményindító!", "errors" => ["trigger_identifier" => "Ez az eseményindító nem létezik!"]], 404);
+        }
+
+        if(empty($response)) {
+            return response()->json(["message" => "Hibás válasz!", "errors" => ["trigger_identifier" => "Ez a válasz nem létezik!"]], 404);
         }
 
         $request->validate(array_merge($trigger::GetValidationRules(), $response::GetValidationRules()));
