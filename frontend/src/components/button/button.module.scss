@@ -2,6 +2,8 @@
 @import "../../styles/mixins";
 
 .button {
+  display: inline-block;
+  cursor: pointer;
   text-wrap: normal;
   max-width: 100%;
   text-align: center;
