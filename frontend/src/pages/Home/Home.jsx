@@ -3,6 +3,7 @@ import Button from "../../components/button/button";
 import Page from "../../components/page/page";
 import classes from "./Home.module.scss";
 import bannerImage from "../../assets/banner-image.svg"
+import { Link } from 'react-router-dom';
 
 const Home = (props) => {
    return (
@@ -19,8 +20,12 @@ const Home = (props) => {
                <img className={classNames(classes.bannerImage)} src={bannerImage} />
             </div>            
             <div>
-               <Button isLarge>Regisztráció</Button>
-               <Button isLarge isHollow>Bejelentkezés</Button>
+                  <Link to="/signup">
+                     <Button isLarge>Regisztráció</Button>
+                  </Link>
+                  <Link to="/login">
+                     <Button isLarge isHollow>Bejelentkezés</Button>
+                  </Link>
             </div>            
          </div>
          <h2>Hogyan működik?</h2>
