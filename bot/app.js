@@ -74,7 +74,12 @@ app.event(/.*/, async ({ event, client }) => {
 
 async function fetchBackend(path) {
     let response;
-    await fetch(process.env.BACKEND_URL + path, { headers: { 'api-key': process.env.BACKEND_API_KEY, accept: 'application/json' } })
+    await fetch(process.env.BACKEND_URL + path, {
+        headers: {
+            'api-key': process.env.BACKEND_API_KEY,
+            accept: 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(data => { response = data; });
     return response;
