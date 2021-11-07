@@ -10,7 +10,7 @@ const Login = (props) => {
 
     const onLoginButtonClick = () => {
         const data = new FormData();
-        data.append('username', 'peterpenzes');
+        data.append('username', 'penzespeter');
         data.append('password', 'Aa12345678');
 
         fetch('https://slack-api.oritamas.hu/api/auth/login', {
