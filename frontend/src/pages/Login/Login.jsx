@@ -9,20 +9,7 @@ import { login } from '../../actions';
 const Login = (props) => {
 
     const onLoginButtonClick = () => {
-        const data = new FormData();
-        data.append('username', 'peterpenzes');
-        data.append('password', 'Aa12345678');
-
-        fetch('https://slack-api.oritamas.hu/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json'
-            },
-            body: data
-        })
-        .then(response => console.log(response))
-        .then(result => console.log(result))
-        .then(err => console.log(err));
+        props.login('penzespeter', 'Aa12345678');
     };
 
     return (
