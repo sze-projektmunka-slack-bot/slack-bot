@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 
 const defaultAuthState = {
+    isLoggedIn: false,
     token: ''
 };
 
@@ -9,6 +10,7 @@ const authReducer = (state = defaultAuthState, action) => {
         case 'auth/login':
             return {
                 ...state, 
+                isLoggedIn: true,
                 token: action.payload.token
             };
         case 'auth/signup':
@@ -16,6 +18,7 @@ const authReducer = (state = defaultAuthState, action) => {
         case 'auth/logout': 
             return {
                 ...state,
+                isLoggedIn: false,
                 token: ''
             };
         default:
