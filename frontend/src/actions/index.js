@@ -7,37 +7,11 @@ export const login = (username, password) => {
         data.append('username', username);
         data.append('password', password);
 
-        await fetch('https://slack-api.oritamas.hu/sanctum/csrf-cookie', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => console.log(response))
-        .then(result => console.log(result))
-        .then(err => console.log(err));
-
-        await fetch('https://slack-api.oritamas.hu/api/auth/login', {
-            method: 'POST',
-            withCredentials: true,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: data
-        })
-        .then(response => console.log(response))
-        .then(result => console.log(result))
-        .then(err => console.log(err));
-
-
-
-        /*console.log(response.data);
+        const response = await backend.post('/auth/login', data);
         dispatch({
             type: 'auth/login',
-            response
-        });*/
+            payload: response.data
+        });
     };
 };
 
@@ -48,34 +22,25 @@ export const signup = (username, email, password, passwordConfirmation) => {
         data.append('email', email);
         data.append('password', password);
         data.append('password_confirmation', passwordConfirmation);
-    
-        const config = {
-            method: 'post',
-            url: '/auth/register',
-            data
-        };
-    
-        const response = await backend(config);
-        console.log(response);
+
+        const response = await backend.post('/auth/register', data);
+
         dispatch({
             type: 'auth/signup',
-            payload: response
+            payload: response.data
         });
     };
 };
 
 export const logout = () => {
-    return async (dispatch) => {    
-        const config = {
-            method: 'post',
-            url: '/auth/logout'
-        };
-    
-        const response = await backend(config);
-        console.log(response);
+    return async (dispatch, getState) => {  
+        const response = await backend.post('/auth/logout', {}, {
+            headers: {
+                'Authorization': `Bearer ${getState().auth.token}`
+            }
+        });
         dispatch({
-            type: 'auth/logout',
-            payload: response
+            type: 'auth/logout'
         });
     };
 };
