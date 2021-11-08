@@ -44,7 +44,7 @@ class Message extends BaseTrigger implements TriggerInterface{
     }
 
 
-    public function GetTrigger() :string {
-        return $this->inputValues["trigger_message"];
+    public static function GetTrigger(array $inputValues) :string {
+        return $inputValues["trigger_message"];
     }
 }

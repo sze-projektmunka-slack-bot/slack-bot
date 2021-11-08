@@ -10,5 +10,5 @@ interface TriggerInterface {
     public static function GetResponses() : array;
     public static function GetValidationRules() : array;
 
-    public function GetTrigger() :string; //e.g. app_mention
+    public static function GetTrigger(array $inputValues) :string; //e.g. app_mention
 }

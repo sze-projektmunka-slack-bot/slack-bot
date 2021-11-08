@@ -35,7 +35,7 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
         ];
     }
 
-    public function GetPayload(): string {
-        return "{text:`{$this->inputValues['message']}`}";
+    public static function GetPayload(array $inputValues): string {
+        return "{\"text\":`{$inputValues['response_message']}`}";
     }
 }

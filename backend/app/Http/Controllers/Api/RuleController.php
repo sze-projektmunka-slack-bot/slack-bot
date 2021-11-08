@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Rule\StoreRuleRequest;
+use App\Models\Rule;
 use App\Services\ResponseService;
 use App\Services\TriggerService;
 
@@ -21,6 +22,17 @@ class RuleController extends Controller
             return response()->json(["message" => "Hibás válasz!", "errors" => ["trigger_identifier" => "Ez a válasz nem létezik!"]], 404);
         }
 
-        $request->validate(array_merge($trigger::GetValidationRules(), $response::GetValidationRules()));
+        $inputValues = $request->validate(array_merge($trigger::GetValidationRules(), $response::GetValidationRules()));
+
+        Rule::updateOrCreate([
+            "workspace_id" => $request->workspace_id,
+            "trigger_type" => $trigger::GetType(),
+            "trigger_content" => $trigger::GetTrigger($inputValues)
+        ], [
+            "response_type" => $response::GetType(),
+            "response_content" => $response::GetPayload($inputValues)
+        ]);
+
+        return response()->noContent(201);
     }
 }

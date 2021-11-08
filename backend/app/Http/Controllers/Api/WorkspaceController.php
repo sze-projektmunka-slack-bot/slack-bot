@@ -20,7 +20,7 @@ class WorkspaceController extends Controller {
         return response()->json($workspaces);
     }
 
-    public function create(CreateWorkspaceRequest $request) {
+    public function store(CreateWorkspaceRequest $request) {
         $client_id = config("slack_bot.client_id");
         $client_secret = config("slack_bot.client_secret");
 

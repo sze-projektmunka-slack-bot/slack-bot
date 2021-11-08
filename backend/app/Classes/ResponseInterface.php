@@ -9,5 +9,5 @@ interface ResponseInterface {
     public static function GetInputs() :array;
     public static function GetValidationRules() :array;
 
-    public function GetPayload() :string;
+    public static function GetPayload(array $inputValues) :string;
 }

@@ -6,11 +6,16 @@ use Illuminate\Support\Collection;
 
 class ResponseService {
 
-    public static function GetRegisteredResponses(): Collection {
+    public static function GetRegisteredResponses(): array {
         return app("registered_responses"); //TODO ez majd mehet configba vagy dbbe
     }
 
-    public static function GetResponse(string $identifier) : ?ResponseInterface {
-        return self::GetRegisteredResponses()->firstWhere("identifier", $identifier) ?? null;
+    public static function GetResponse(string $identifier) : ?string {
+        foreach (self::GetRegisteredResponses() as $response) {
+            if($response::GetIdentifier() == $identifier){
+                return $response;
+            }
+        }
+        return null;
     }
 }

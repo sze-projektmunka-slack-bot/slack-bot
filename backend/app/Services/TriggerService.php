@@ -6,11 +6,17 @@ use Illuminate\Support\Collection;
 
 class TriggerService {
 
-    public static function GetRegisteredTriggers(): Collection {
-        return app("registered_triggers"); //TODO ez majd mehet configba vagy dbbe
+    public static function GetRegisteredTriggers(): array {
+        //TODO ez majd mehet configba vagy dbbe
+        return app("registered_triggers");
     }
 
-    public static function GetTrigger(string $identifier) : ?TriggerInterface {
-        return self::GetRegisteredTriggers()->firstWhere("identifier", $identifier) ?? null;
+    public static function GetTrigger(string $identifier) : ?string {
+        foreach (self::GetRegisteredTriggers() as $trigger) {
+            if($trigger::GetIdentifier() == $identifier){
+                return $trigger;
+            }
+        }
+        return null;
     }
 }

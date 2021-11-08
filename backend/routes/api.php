@@ -29,7 +29,16 @@ Route::group([
     "middleware" => "auth:sanctum"
 ], function () {
     Route::get("/", [\App\Http\Controllers\Api\WorkspaceController::class, "list"])->name("list");
-    Route::post("/", [\App\Http\Controllers\Api\WorkspaceController::class, "create"])->name("create");
+    Route::post("/", [\App\Http\Controllers\Api\WorkspaceController::class, "store"])->name("store");
+});
+
+Route::group([
+    "prefix"     => "rules",
+    "as"         => "rules.",
+    "middleware" => "auth:sanctum"
+], function () {
+    //Route::get("/", [\App\Http\Controllers\Api\RuleController::class, "list"])->name("list");
+    Route::post("/", [\App\Http\Controllers\Api\RuleController::class, "store"])->name("store");
 });
 
 

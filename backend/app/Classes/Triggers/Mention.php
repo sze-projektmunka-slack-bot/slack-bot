@@ -33,8 +33,7 @@ class Mention extends BaseTrigger implements TriggerInterface{
         return [];
     }
 
-
-    public function GetTrigger() :string {
+    public static function GetTrigger(array $inputValues) :string {
         return "app_mention";
     }
 }

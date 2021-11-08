@@ -3,16 +3,15 @@
 namespace App\Http\Requests\Rule;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreRuleRequest extends FormRequest
-{
+class StoreRuleRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,10 +20,11 @@ class StoreRuleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            "trigger_identifier" => "required|string",
+            "workspace_id" => "required|integer|exists:workspaces,id",
+
+            "trigger_identifier"  => "required|string",
             "response_identifier" => "required|string",
         ];
     }
