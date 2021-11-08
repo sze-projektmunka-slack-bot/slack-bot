@@ -5,24 +5,31 @@ import InputField from '../../components/input-field/inputField';
 import Button from '../../components/button/button';
 import { connect } from 'react-redux';
 import { signup } from '../../actions';
+import { Field, reduxForm } from 'redux-form';
 
 const Signup = (props) => {
+    const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév"/>;
+    const renderEmailInput = formProps => <InputField reduxFormData={formProps} label="E-mail cím"/>;
+    const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
+    const renderPasswordConfirmationInput = formProps => <InputField reduxFormData={formProps} label="Jelszó újra" type="password"/>;
 
-    const onSignupButtonClicked = () => {
-        props.signup('tamastomordi', 'thefurgeurge@gmail.com', 'ABC123456', 'ABC123456');
+    const onSubmit = (formValues) => {
+        props.signup(formValues.username, formValues.email, formValues.password, formValues.passwordConfirmation);
     };
 
     return (
         <Page noCard title="Regisztráció">
-            <div>
-                <InputField label="Felhasználónév"/>
-                <InputField label="E-mail cím"/>
-                <InputField label="Jelszó" type="password"/>
-                <InputField label="Jelszó újra" type="password"/>
-                <Button onClick={onSignupButtonClicked} className={classNames(classes.button)} color="blue">Regisztráció</Button>
-            </div>
+            <form>
+                <Field name='username' component={renderUsernameInput} />
+                <Field name='email' component={renderEmailInput} />
+                <Field name='password' component={renderPasswordInput} />
+                <Field name='passwordConfirmation' component={renderPasswordConfirmationInput} />
+                <Button onClick={props.handleSubmit(onSubmit)} className={classNames(classes.button)} color="blue">Regisztráció</Button>
+            </form>
         </Page>
     );
 };
 
-export default connect(null, {signup})(Signup);
+export default reduxForm({
+    form: 'signupForm'
+})(connect(null, {signup})(Signup));
