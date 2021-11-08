@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 import { login } from '../../actions';
 import { Field, reduxForm } from 'redux-form';
 
-const Login = (props) => {
-    const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév" />;
-    const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
-    
+const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév" />;
+const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
+
+const Login = (props) => {    
     const onSubmit = formValues => { 
         props.login(formValues.username, formValues.password);
     };

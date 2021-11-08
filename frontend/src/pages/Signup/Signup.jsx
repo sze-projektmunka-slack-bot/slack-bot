@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 import { signup } from '../../actions';
 import { Field, reduxForm } from 'redux-form';
 
-const Signup = (props) => {
-    const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév"/>;
-    const renderEmailInput = formProps => <InputField reduxFormData={formProps} label="E-mail cím"/>;
-    const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
-    const renderPasswordConfirmationInput = formProps => <InputField reduxFormData={formProps} label="Jelszó újra" type="password"/>;
+const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév"/>;
+const renderEmailInput = formProps => <InputField reduxFormData={formProps} label="E-mail cím"/>;
+const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
+const renderPasswordConfirmationInput = formProps => <InputField reduxFormData={formProps} label="Jelszó újra" type="password"/>;
 
+const Signup = (props) => {
     const onSubmit = (formValues) => {
         props.signup(formValues.username, formValues.email, formValues.password, formValues.passwordConfirmation);
     };
