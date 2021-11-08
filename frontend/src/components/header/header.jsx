@@ -14,7 +14,7 @@ const Header = (props) => {
    return (
       <header className={classNames(classes.header)}>
          <div className={classNames(classes.container)}>
-            <Link to="/">
+            <Link to="/presentation">
                <img className={classNames(classes.logo)} src={logo} />
             </Link>
             {

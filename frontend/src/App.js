@@ -5,23 +5,33 @@ import Home from './pages/Home/Home';
 import Presentation from "./pages/Presentation/Presentation";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { connect } from 'react-redux';
 
-const App = () => {
+const App = (props) => {
     toastr.options.iconClass = "custom-toastr-icon";
     return (
       <div className="app">     
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/" exact element={<Home />} />
-                <Route path="/presentation" exact element={<Presentation />} />
-                <Route path="/login" exact element={<Login />} />
-                <Route path="/signup" exact element={<Signup />} />      
+                <Route path="/home" exact element={<Home />} />
+                <Route path="/presentation" exact 
+                  element={props.isLoggedIn ? <Presentation /> : <Navigate to="/home" />} 
+                />
+                <Route path="/login" exact element={props.isLoggedIn ? <Navigate to="/presentation" /> : <Login />} />
+                <Route path="/signup" exact element={props.isLoggedIn ? <Navigate to="/presentation" /> : <Signup />} />      
+                <Route path="*" exact element={<Navigate to="/home" />} />
             </Routes>     
         </BrowserRouter>
       </div>
    );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.auth.isLoggedIn
+  };
+};
+
+export default connect(mapStateToProps, {})(App);
