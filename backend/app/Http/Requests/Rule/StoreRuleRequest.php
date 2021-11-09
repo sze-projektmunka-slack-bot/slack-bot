@@ -24,8 +24,8 @@ class StoreRuleRequest extends FormRequest {
         return [
             "workspace_id" => "required|integer|exists:workspaces,id",
 
-            "trigger_identifier"  => "required|string",
-            "response_identifier" => "required|string",
+            "trigger.identifier"  => "required|string",
+            "response.identifier" => "required|string",
         ];
     }
 }

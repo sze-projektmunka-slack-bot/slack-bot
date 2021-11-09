@@ -8,11 +8,11 @@ use App\Models\Rule;
 use App\Services\ResponseService;
 use App\Services\TriggerService;
 
-class RuleController extends Controller
-{
+class RuleController extends Controller {
+
     public function store(StoreRuleRequest $request) {
-        $trigger = TriggerService::GetTrigger($request->trigger_identifier);
-        $response = ResponseService::GetResponse($request->response_identifier);
+        $trigger = TriggerService::GetTrigger($request->trigger["identifier"]);
+        $response = ResponseService::GetResponse($request->response["identifier"]);
 
         if(empty($trigger)) {
             return response()->json(["message" => "Hibás eseményindító!", "errors" => ["trigger_identifier" => "Ez az eseményindító nem létezik!"]], 404);
@@ -22,18 +22,18 @@ class RuleController extends Controller
             return response()->json(["message" => "Hibás válasz!", "errors" => ["trigger_identifier" => "Ez a válasz nem létezik!"]], 404);
         }
 
-        $inputValues = $request->validate(array_merge($trigger->GetValidationRules(), $response->GetValidationRules()));
-
-        $trigger->SetInputValues($inputValues);
-        $response->SetInputValues($inputValues);
+        $inputValues = $request->validate([
+            "trigger" => $trigger->GetValidationRules(),
+            "response" => $response->GetValidationRules()
+        ]);
 
         Rule::updateOrCreate([
             "workspace_id" => $request->workspace_id,
-            "trigger_type" => $trigger->GetType(),
-            "trigger_content" => $trigger->GetTrigger()
+            "trigger_identifier" => $trigger::GetIdentifier(),
+            "trigger_inputs" => json_encode($inputValues["trigger"])
         ], [
-            "response_type" => $response->GetType(),
-            "response_content" => $response->GetPayload()
+            "response_identifier" => $response::GetIdentifier(),
+            "response_inputs" => json_encode($inputValues["response"])
         ]);
 
         return response()->noContent(201);

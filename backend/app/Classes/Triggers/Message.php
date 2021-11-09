@@ -29,7 +29,7 @@ class Message extends BaseTrigger implements TriggerInterface {
     ];
 
     protected array $validationRules = [
-        "trigger_message" => "required|string"
+        "trigger_message" => ["required", "string"]
     ];
 
     public function GetTrigger(): string {

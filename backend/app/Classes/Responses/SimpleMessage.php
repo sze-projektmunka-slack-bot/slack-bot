@@ -24,7 +24,7 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
     protected string $type = "say";
 
     protected array $validationRules = [
-        "response_message" => "required|string"
+        "response_message" => ["required", "string"]
     ];
 
     public function GetPayload(): string {
