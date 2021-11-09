@@ -8,8 +8,15 @@ if (result.error) {
     console.error('Dotenv error: ' + result.error);
 }
 
-const installations = await fetchBackend('/api/bot/workspaces');
-const rules = await fetchBackend('/api/bot/rules');
+let installations = await fetchBackend('/api/bot/workspaces');
+setInterval(async function() {
+    installations = await fetchBackend('/api/bot/rules');
+}, process.env.FETCH_INTERVAL);
+
+let rules = await fetchBackend('/api/bot/rules');
+setInterval(async function() {
+    rules = await fetchBackend('/api/bot/rules');
+}, process.env.FETCH_INTERVAL);
 
 const authorizer = async ({ teamId }) => {
     for (const team of installations) {
@@ -95,6 +102,6 @@ async function sendMessage(event, client, content) {
                 text: content
             }
         }],
-        text: content
+        text: 'Response.'
     });
 }
