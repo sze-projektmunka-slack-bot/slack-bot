@@ -4,10 +4,12 @@ namespace App\Classes;
 
 interface ResponseInterface {
     public static function GetIdentifier() :string;
-    public static function GetName() :string;
-    public static function GetType() :string; //e.g. say
-    public static function GetInputs() :array;
-    public static function GetValidationRules() :array;
 
-    public static function GetPayload(array $inputValues) :string;
+    public function SetInputValues(array $inputValues): void;
+    public function GetName() :string;
+    public function GetType() :string; //e.g. say
+    public function GetInputs() :array;
+    public function GetValidationRules() :array;
+
+    public function GetPayload() :string;
 }

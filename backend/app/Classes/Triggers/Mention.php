@@ -6,34 +6,25 @@ use App\Classes\BaseTrigger;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
 
-class Mention extends BaseTrigger implements TriggerInterface{
+class Mention extends BaseTrigger implements TriggerInterface {
+
     public static function GetIdentifier(): string {
         return "trigger_app_mention";
     }
 
-    public static function GetName() :string {
-        return "Bot Említése";
-    }
+    protected string $name = "Bot Említése";
 
-    public static function GetInputs() :array {
-        return [];
-    }
+    protected array $inputs = [];
 
-    public static function GetType() :string {
-        return "event";
-    }
+    protected string $type = "event";
 
-    public static function GetResponses(): array {
-        return [
-           SimpleMessage::class
-        ];
-    }
+    protected array $responses = [
+        SimpleMessage::class
+    ];
 
-    public static function GetValidationRules(): array {
-        return [];
-    }
+    protected array $validationRules = [];
 
-    public static function GetTrigger(array $inputValues) :string {
+    public function GetTrigger(): string {
         return "app_mention";
     }
 }

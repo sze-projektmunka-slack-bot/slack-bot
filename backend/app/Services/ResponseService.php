@@ -10,10 +10,10 @@ class ResponseService {
         return app("registered_responses"); //TODO ez majd mehet configba vagy dbbe
     }
 
-    public static function GetResponse(string $identifier) : ?string {
+    public static function GetResponse(string $identifier) : ?ResponseInterface {
         foreach (self::GetRegisteredResponses() as $response) {
             if($response::GetIdentifier() == $identifier){
-                return $response;
+                return new $response();
             }
         }
         return null;

@@ -22,15 +22,18 @@ class RuleController extends Controller
             return response()->json(["message" => "Hibás válasz!", "errors" => ["trigger_identifier" => "Ez a válasz nem létezik!"]], 404);
         }
 
-        $inputValues = $request->validate(array_merge($trigger::GetValidationRules(), $response::GetValidationRules()));
+        $inputValues = $request->validate(array_merge($trigger->GetValidationRules(), $response->GetValidationRules()));
+
+        $trigger->SetInputValues($inputValues);
+        $response->SetInputValues($inputValues);
 
         Rule::updateOrCreate([
             "workspace_id" => $request->workspace_id,
-            "trigger_type" => $trigger::GetType(),
-            "trigger_content" => $trigger::GetTrigger($inputValues)
+            "trigger_type" => $trigger->GetType(),
+            "trigger_content" => $trigger->GetTrigger()
         ], [
-            "response_type" => $response::GetType(),
-            "response_content" => $response::GetPayload($inputValues)
+            "response_type" => $response->GetType(),
+            "response_content" => $response->GetPayload()
         ]);
 
         return response()->noContent(201);

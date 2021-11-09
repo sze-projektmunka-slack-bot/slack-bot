@@ -11,10 +11,10 @@ class TriggerService {
         return app("registered_triggers");
     }
 
-    public static function GetTrigger(string $identifier) : ?string {
+    public static function GetTrigger(string $identifier) : ?TriggerInterface {
         foreach (self::GetRegisteredTriggers() as $trigger) {
             if($trigger::GetIdentifier() == $identifier){
-                return $trigger;
+                return new $trigger();
             }
         }
         return null;
