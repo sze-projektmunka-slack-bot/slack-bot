@@ -6,9 +6,11 @@
     "extends": [
         "standard"
     ],
+    "parser": "@babel/eslint-parser",
     "parserOptions": {
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "babelOptions": { "configFile": "./.babelrc" }
     },
     "rules": {
         "semi": ["error", "always"],
