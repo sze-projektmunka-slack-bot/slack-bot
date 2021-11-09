@@ -8,15 +8,8 @@ if (result.error) {
     console.error('Dotenv error: ' + result.error);
 }
 
-let installations;
-let rules;
-
-fetchBackend('/api/bot/workspaces')
-    .then(response => { installations = response; });
-
-fetchBackend('/api/bot/rules')
-    .then(response => { rules = response; });
-
+const installations = await fetchBackend('/api/bot/workspaces');
+const rules = await fetchBackend('/api/bot/rules');
 
 const authorizer = async ({ teamId }) => {
     for (const team of installations) {
@@ -79,13 +72,16 @@ app.event(/.*/, async ({ event, client }) => {
 
 
 async function fetchBackend(path) {
-    return await fetch(process.env.BACKEND_URL + path, {
+    const response = await fetch(process.env.BACKEND_URL + path, {
         headers: {
             'api-key': process.env.BACKEND_API_KEY,
             accept: 'application/json'
         }
-    })
-        .then(response => response.json());
+    });
+
+    const result = await response.json();
+
+    return result;
 }
 
 // A content egyenlore csak string, de kesobb alljunk at blocksra
