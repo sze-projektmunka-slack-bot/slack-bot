@@ -5,14 +5,27 @@ import InputField from '../../components/input-field/inputField';
 import Button from '../../components/button/button';
 import { connect } from 'react-redux';
 import { login } from '../../actions';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, SubmissionError } from 'redux-form';
+import * as toastr from "toastr";
 
 const renderUsernameInput = formProps => <InputField reduxFormData={formProps} label="Felhasználónév" />;
 const renderPasswordInput = formProps => <InputField reduxFormData={formProps} label="Jelszó" type="password"/>;
 
 const Login = (props) => {    
     const onSubmit = formValues => { 
-        props.login(formValues.username, formValues.password);
+        return props.login(formValues.username, formValues.password).then(res => { 
+            if(res.type === 'auth/login/ERROR') {
+                toastr.error('Kérjük ellenőrizd az adataidat!', 'Sikertelen bejelentkezés');
+                if(res.payload.response.data.errors && res.payload.response.data.errors.username === 'Invalid username') {
+                    throw new SubmissionError({username: 'Nem létező felhasználónév!', _error: 'Login failed!'});
+                }
+                if(res.payload.response.data.errors && res.payload.response.data.errors.password === 'Invalid password') {
+                    throw new SubmissionError({password: 'Helytelen jelszó!', _error: 'Login failed!'});
+                }
+            } else {
+                toastr.success('Üdvözöl a Slack Bot Configurator!', 'Sikeres bejelentkezés');
+            }
+        });
     };
 
     return (
