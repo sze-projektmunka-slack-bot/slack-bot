@@ -9,6 +9,9 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getLocalToken } from "./actions";
 
+const defRouteBeforeLogIn = "/home";
+const defRouteAfterLogIn = "/presentation";
+
 const App = (props) => {
 
     useEffect(() => {
@@ -16,18 +19,19 @@ const App = (props) => {
     }, []);
 
     toastr.options.iconClass = "custom-toastr-icon";
+
+    const isLoggedIn = props.isLoggedIn;
+
     return (
       <div className="app">     
         <BrowserRouter>
             <Header />
             <Routes>
-                <Route path="/home" exact element={<Home />} />
-                <Route path="/presentation" exact 
-                  element={props.isLoggedIn ? <Presentation /> : <Navigate to="/home" />} 
-                />
-                <Route path="/login" exact element={props.isLoggedIn ? <Navigate to="/presentation" /> : <Login />} />
-                <Route path="/signup" exact element={props.isLoggedIn ? <Navigate to="/presentation" /> : <Signup />} />      
-                <Route path="*" exact element={<Navigate to="/home" />} />
+              <Route path="/home" exact element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Home /> } />
+              <Route path="/presentation" element={ props.isLoggedIn ? <Presentation /> : <Navigate to={defRouteBeforeLogIn} /> } />
+              <Route path="/login" exact element={ props.isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Login /> } />
+              <Route path="/signup" exact element={ props.isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Signup /> } />      
+              <Route path="*" exact element={<Navigate to={defRouteAfterLogIn} />} />
             </Routes>     
         </BrowserRouter>
       </div>
