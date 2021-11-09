@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./components/header/header";
 import * as toastr from "toastr";
 import Home from './pages/Home/Home';
@@ -7,8 +7,14 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { connect } from 'react-redux';
+import { getLocalToken } from "./actions";
 
 const App = (props) => {
+
+    useEffect(() => {
+      props.getLocalToken();
+    }, []);
+
     toastr.options.iconClass = "custom-toastr-icon";
     return (
       <div className="app">     
@@ -34,4 +40,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, {getLocalToken})(App);

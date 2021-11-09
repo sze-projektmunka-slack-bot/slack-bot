@@ -72,3 +72,10 @@ export const logout = () => {
         });
     };
 };
+
+export const getLocalToken = () => {
+    return {
+        type: 'auth/getLocalToken',
+        payload: localStorage.getItem('token')
+    };
+};

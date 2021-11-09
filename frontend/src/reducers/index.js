@@ -22,6 +22,17 @@ const authReducer = (state = defaultAuthState, action) => {
                 isLoggedIn: false,
                 token: ''
             };
+        case 'auth/getLocalToken': {
+            if(action.payload) {
+                return {
+                    ...state,
+                    isLoggedIn: true,
+                    token: action.payload
+                };
+            } else {
+                return state;
+            }
+        };            
         default:
             return state;
     }
