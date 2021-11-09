@@ -14,17 +14,24 @@ const renderPasswordInput = formProps => <InputField reduxFormData={formProps} l
 const Login = (props) => {    
     const onSubmit = formValues => { 
         return props.login(formValues.username, formValues.password).then(res => { 
-            if(res.type === 'auth/login/ERROR') {
-                toastr.error('Kérjük ellenőrizd az adataidat!', 'Sikertelen bejelentkezés');
-                if(res.payload.response.data.errors && res.payload.response.data.errors.username === 'Invalid username') {
-                    throw new SubmissionError({username: 'Nem létező felhasználónév!', _error: 'Login failed!'});
-                }
-                if(res.payload.response.data.errors && res.payload.response.data.errors.password === 'Invalid password') {
-                    throw new SubmissionError({password: 'Helytelen jelszó!', _error: 'Login failed!'});
-                }
-            } else {
+            if(res.type !== 'auth/login/ERROR') {
                 toastr.success('Üdvözöl a Slack Bot Configurator!', 'Sikeres bejelentkezés');
+                props.reset();
+                return;
             }
+            
+            const errorResponse = res.payload.response.data.errors;
+            let errors = {};
+            
+            if(errorResponse.username === 'Invalid username') {
+                errors.username = 'Nem létező felhasználónév!';
+            }
+            if(errorResponse.password === 'Invalid password') {
+                errors.password = 'Helytelen jelszó!';
+            }    
+
+            toastr.error('Kérjük ellenőrizd az adataidat!', 'Sikertelen bejelentkezés');
+            throw new SubmissionError({ ...errors, _error: 'Login failed!'});
         });
     };
 
