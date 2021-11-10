@@ -19,7 +19,7 @@ const Button = (props) => {
     }
 
     return (
-        <div
+        <button
             type={type ?? "button"}
             className={
                 classNames(
@@ -34,7 +34,7 @@ const Button = (props) => {
             style={{...(style ? style : {})}}
         >
             {children}
-        </div>
+        </button>
     );
 };
 
