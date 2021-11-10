@@ -13,8 +13,6 @@ export const login = (username, password) => {
             console.log(err);
         });
 
-        console.log(response);
-
         if(response) {
             localStorage.setItem('token', response.data.token);
             return dispatch({
