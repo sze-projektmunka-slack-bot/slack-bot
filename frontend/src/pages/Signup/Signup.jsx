@@ -21,26 +21,7 @@ const Signup = (props) => {
                 props.reset();
                 return;
             }     
-
-            const errorResponse = res.payload.response.data.errors;
-            let errors = {};
-            
-            if(errorResponse.username && errorResponse.username.includes('The username has already been taken.')) {
-                errors.username = 'Már foglalt vagy helytelen felhasználónév!';
-            }
-            if(errorResponse.email && errorResponse.email.includes('The email must be a valid email address.')) {
-                errors.email = 'Helytelen e-mail formátum!';
-            }
-            if(errorResponse.email && errorResponse.email.includes('The email has already been taken.')) {
-                errors.email = 'Ez az e-mail cím már foglalt!';
-            }
-            if(errorResponse.password && errorResponse.password.includes('The password format is invalid.')) {
-                errors.password = 'A jelszó tartalmazzon kis- és nagybetűt, számot, és legyen legalább 8 karakter hosszú!';                   
-            }
-            if(errorResponse.password && errorResponse.password.includes('The password confirmation does not match.')) {
-                errors.passwordConfirmation = 'A két jelszó nem egyezik!';                   
-            }
-            
+            const errors = res.payload.response.data.errors;
             toastr.error('Kérjük javítsd az adatokat és próbálkozz újra!', 'Sikertelen regisztráció');
             throw new SubmissionError({...errors, _error: 'Signup failed!'});   
         });

@@ -18,18 +18,8 @@ const Login = (props) => {
                 toastr.success('Üdvözöl a Slack Bot Configurator!', 'Sikeres bejelentkezés');
                 props.reset();
                 return;
-            }
-            
-            const errorResponse = res.payload.response.data.errors;
-            let errors = {};
-            
-            if(errorResponse.username === 'Invalid username') {
-                errors.username = 'Nem létező felhasználónév!';
-            }
-            if(errorResponse.password === 'Invalid password') {
-                errors.password = 'Helytelen jelszó!';
-            }    
-
+            }            
+            const errors = res.payload.response.data.errors;     
             toastr.error('Kérjük ellenőrizd az adataidat!', 'Sikertelen bejelentkezés');
             throw new SubmissionError({ ...errors, _error: 'Login failed!'});
         });
