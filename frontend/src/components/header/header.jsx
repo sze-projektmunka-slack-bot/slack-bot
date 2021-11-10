@@ -32,7 +32,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      isLoggedIn: state.auth.isLoggedIn
+      isLoggedIn: state.auth.token
    };
 };
 

@@ -2,7 +2,6 @@ import { combineReducers } from "redux";
 import { reducer as formReducer } from 'redux-form';
 
 const defaultAuthState = {
-    isLoggedIn: false,
     token: ''
 };
 
@@ -11,7 +10,6 @@ const authReducer = (state = defaultAuthState, action) => {
         case 'auth/login':
             return {
                 ...state, 
-                isLoggedIn: true,
                 token: action.payload.token
             };
         case 'auth/signup':
@@ -19,14 +17,12 @@ const authReducer = (state = defaultAuthState, action) => {
         case 'auth/logout': 
             return {
                 ...state,
-                isLoggedIn: false,
                 token: ''
             };
         case 'auth/getLocalToken': {
             if(action.payload) {
                 return {
                     ...state,
-                    isLoggedIn: true,
                     token: action.payload
                 };
             } else {
