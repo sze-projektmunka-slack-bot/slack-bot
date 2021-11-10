@@ -28,9 +28,9 @@ const App = (props) => {
             <Header />
             <Routes>
               <Route path="/home" exact element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Home /> } />
-              <Route path="/presentation" element={ props.isLoggedIn ? <Presentation /> : <Navigate to={defRouteBeforeLogIn} /> } />
-              <Route path="/login" exact element={ props.isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Login /> } />
-              <Route path="/signup" exact element={ props.isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Signup /> } />      
+              <Route path="/presentation" element={ isLoggedIn ? <Presentation /> : <Navigate to={defRouteBeforeLogIn} /> } />
+              <Route path="/login" exact element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Login /> } />
+              <Route path="/signup" exact element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Signup /> } />      
               <Route path="*" exact element={<Navigate to={defRouteAfterLogIn} />} />
             </Routes>     
         </BrowserRouter>
