@@ -2,21 +2,26 @@
 @import "../../styles/mixins";
 
 .page {
-  padding: 3rem;
-  width: 95%;
-
-  @include md {
-    width: 90%;
-  }
-  @include lg {
-    width: 80%;
-  }
+  width: 100%;
+  padding-bottom: 5rem;
+  overflow-x: hidden;
 
   .title {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid black;
+    margin: 2.5rem auto 2rem;
+    text-align: left;
   }
 
+  .container {
+    width: 95%;
+    margin: 0 auto;
+
+    @include md {
+      width: 90%;
+    }
+    @include lg {
+      width: 70%;
+    }
+  }
 
   &.card {
     border: 1px solid grey;

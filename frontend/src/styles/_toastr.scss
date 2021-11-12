@@ -1,6 +1,7 @@
 @import "variables";
 
 #toast-container{
+  color: white !important;
 
   .toast{
     opacity: 1;
@@ -8,6 +9,15 @@
     background-size: 50px 50px;
     padding-left: 80px;
     border-radius: 5px;
+
+    .toast-title {
+      color: white;
+    }
+
+    .toast-message {
+      color: white;
+    }
+
     &.toast-error{
       background-color: $dark-red;
       background-image: url(../assets/notification-icons/error-icon.svg) !important;

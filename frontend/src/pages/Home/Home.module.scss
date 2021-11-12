@@ -1,0 +1,76 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.banner {
+   background: $light-blue-gradient;
+   margin-bottom: 2rem;
+   padding: 5rem 0;
+
+   width: 100vw;
+   position: relative;
+   left: 50%;
+   right: 50%;
+   margin-left: -50vw;
+   margin-right: -50vw;
+   
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   .row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+      justify-content: center;
+      text-align: center;
+
+      .bannerImage {
+         width: 15rem;
+         margin-top: 2rem;
+      }
+      
+      @include md {
+         flex-direction: row;
+         text-align: left;
+         
+      }  
+   }
+
+   .texts {
+      width: 60ch;
+
+      h1 {
+         font-size: 3rem;
+         line-height: 3.5rem;
+         margin-bottom: 1.5rem;
+      }      
+   }  
+}
+
+h2 {
+   text-align: center;
+   margin: 3rem 0 1rem;
+}
+
+.twoColumn {
+   p {
+      margin: 2rem 0;
+      text-align: center;
+   }
+
+   @include sm {
+      display: flex;
+      gap: 2rem;
+      p {
+         text-align: left;
+         margin: 2rem 0;
+         width: 50%;
+      }
+   }
+
+   @include xl {
+      padding: 0 0rem;
+   }
+}

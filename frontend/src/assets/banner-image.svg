@@ -1,0 +1,16 @@
+<svg id="Component_8_1" data-name="Component 8 – 1" xmlns="http://www.w3.org/2000/svg" width="245.411" height="176.57" viewBox="0 0 245.411 176.57">
+  <g id="Component_1_1" data-name="Component 1 – 1" transform="translate(119.856)">
+    <path id="Path_1" data-name="Path 1" d="M5,0H98a5,5,0,0,1,5,5V107a5,5,0,0,1-5,5H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z" transform="translate(25.195) rotate(13)" fill="#1789fc"/>
+    <ellipse id="Ellipse_18" data-name="Ellipse 18" cx="19.5" cy="20" rx="19.5" ry="20" transform="translate(30.514 25.859) rotate(13)" fill="#fff"/>
+    <ellipse id="Ellipse_19" data-name="Ellipse 19" cx="19.5" cy="20" rx="19.5" ry="20" transform="translate(73.386 35.757) rotate(13)" fill="#fff"/>
+    <ellipse id="Ellipse_20" data-name="Ellipse 20" cx="8.5" cy="9" rx="8.5" ry="9" transform="translate(81.63 48.95) rotate(13)" fill="#1b2c3e"/>
+    <ellipse id="Ellipse_21" data-name="Ellipse 21" cx="8.5" cy="9" rx="8.5" ry="9" transform="translate(38.757 39.052) rotate(13)" fill="#1b2c3e"/>
+  </g>
+  <g id="Component_2_1" data-name="Component 2 – 1" transform="matrix(0.921, -0.391, 0.391, 0.921, 0, 54.788)">
+    <rect id="Rectangle_28" data-name="Rectangle 28" width="103" height="112" rx="5" transform="translate(25.195 0) rotate(13)" fill="#de9502"/>
+    <ellipse id="Ellipse_22" data-name="Ellipse 22" cx="19.5" cy="20" rx="19.5" ry="20" transform="translate(30.514 25.859) rotate(13)" fill="#fff"/>
+    <ellipse id="Ellipse_23" data-name="Ellipse 23" cx="19.5" cy="20" rx="19.5" ry="20" transform="translate(73.386 35.757) rotate(13)" fill="#fff"/>
+    <ellipse id="Ellipse_24" data-name="Ellipse 24" cx="8.5" cy="9" rx="8.5" ry="9" transform="translate(81.63 48.95) rotate(13)" fill="#1b2c3e"/>
+    <ellipse id="Ellipse_25" data-name="Ellipse 25" cx="8.5" cy="9" rx="8.5" ry="9" transform="translate(38.757 39.052) rotate(13)" fill="#1b2c3e"/>
+  </g>
+</svg>
