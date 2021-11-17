@@ -75,6 +75,7 @@ const Workspaces = (props) => {
                 </Button> 
                 <div className={classes.workspacesList}>
                     {loading && <h3>Töltés...</h3>}
+                    {(loading === false && workspaces.length === 0) && <h3>Önnek nincs egy workspace-je sem.</h3>}
                     {workspaces.map(element => {
                         return (
                                     <Link key={element.workspace_id} to={`/workspaces/${element.workspace_id}`}>
