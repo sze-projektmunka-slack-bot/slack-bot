@@ -33,14 +33,13 @@ const Workspaces = (props) => {
                 }
             }).catch((err) => {
                 error = err;
-                console.log(err);
             });
 
             if (response) {
                 toastr.success(`${response.data.team_name} sikeres hozzáadva fiókjához!`, 'Sikeres hozzáadás');
                 getWorkspaces();
             } else {
-                toastr.error(error, 'Hiba történt');
+                toastr.error(error.response.data.message ?? error, 'Hiba történt');
             }
             setLoading(false);
         }
