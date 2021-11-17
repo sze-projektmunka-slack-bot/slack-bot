@@ -13,7 +13,7 @@ class WorkspaceController extends Controller {
         $workspaces = Workspace::where("user_id", auth()->id())->get()->map(function ($workspace) {
             return [
                 "workspace_id" => $workspace->id,
-                "team_name" => $workspace->team_name
+                "team_name"    => $workspace->team_name
             ];
         });
 
@@ -31,7 +31,9 @@ class WorkspaceController extends Controller {
         $oauth_response = json_decode($oauth_raw_response, true);
 
         if (!$oauth_response["ok"]) {
-            return response()->json(null, 400);
+            return response()->json([
+                "message" => "A hozzáadás során hiba lépett fel! Hibás authentikációs kód."
+            ], 400);
         }
 
         $bot_test_raw_response = shell_exec(
@@ -41,16 +43,25 @@ class WorkspaceController extends Controller {
         $bot_test_response = json_decode($bot_test_raw_response, true);
 
         if (!$bot_test_response["ok"] || empty($bot_test_response["bot_id"])) {
-            return response()->json(null, 400);
+            return response()->json([
+                "message" => "A hozzáadás során hiba lépett fel! Az authentikáció sikertelen volt!"
+            ], 400);
         }
 
-        $workspace = Workspace::create([
-            "user_id" => auth()->id(),
-            "access_token" => $oauth_response["access_token"],
-            "team_name" => $oauth_response["team"]["name"],
+        if (Workspace::where("team_id", $oauth_response["team"]["id"])->where("user_id", "<>", auth()->id())) {
+            return response()->json([
+                "message" => "A hozzáadás során hiba lépett fel! Ezt a szervert egy másik felhasználó már hozzáadta!"
+            ], 400);
+        }
+
+        $workspace = Workspace::updateOrCreate([
             "team_id" => $oauth_response["team"]["id"],
-            "bot_user_id" => $oauth_response["bot_user_id"],
-            "bot_id" => $bot_test_response["bot_id"]
+        ], [
+            "user_id"      => auth()->id(),
+            "access_token" => $oauth_response["access_token"],
+            "team_name"    => $oauth_response["team"]["name"],
+            "bot_user_id"  => $oauth_response["bot_user_id"],
+            "bot_id"       => $bot_test_response["bot_id"]
         ]);
 
         return response()->json([
