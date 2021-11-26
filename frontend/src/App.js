@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes, Navigate, Switch } from "react-router-dom
 import { connect } from 'react-redux';
 import { getLocalToken } from "./actions";
 import Workspace from "./pages/Workspace/Workspace";
+import NewRule from "./pages/NewRule/NewRule";
 
 const defRouteBeforeLogIn = "/home";
 const defRouteAfterLogIn = "/presentation";
@@ -30,6 +31,7 @@ const App = (props) => {
             <Routes>
                 <Route path="workspaces" element={ isLoggedIn ? <Workspaces /> : <Navigate to={defRouteBeforeLogIn} /> } />
                 <Route path="workspaces/:id" element={ isLoggedIn ? <Workspace /> : <Navigate to={defRouteBeforeLogIn} /> } />
+                <Route path="workspaces/:id/rules/add" element={ isLoggedIn ? <NewRule /> : <Navigate to={defRouteBeforeLogIn} /> } />
                 <Route path="home" element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Home /> } />
                 <Route path="presentation" element={ isLoggedIn ? <Presentation /> : <Navigate to={defRouteBeforeLogIn} /> } />
                 <Route path="login" element={ isLoggedIn ? <Navigate to={defRouteAfterLogIn} /> : <Login /> } />

@@ -2,7 +2,8 @@ import classNames from "classnames";
 import Button from "../../components/button/button";
 import Page from "../../components/page/page";
 import { connect } from 'react-redux';
-import classes from "./Workspace.module.scss";
+import SelectField from "../../components/select-field/selectField";
+import classes from "./NewRule.module.scss";
 import {
     Link, useParams
 } from 'react-router-dom';
@@ -17,7 +18,7 @@ import * as toastr from "toastr";
 const Workspace = (props) => {
     let { id } = useParams();
     const [workspaceName, setWorkspaceName] = useState([]);
-    const [rules, setRules] = useState([]);
+    const [triggers, setTriggers] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(async () => {
         async function getWorkspaces() {
@@ -43,10 +44,10 @@ const Workspace = (props) => {
             }
             setLoading(false);
         }
-        async function getRules() {
+        async function getTriggers() {
             setLoading(true);
             let error;
-            const response = await backendApi.get(`/workspaces/rules/${id}`, {
+            const response = await backendApi.get('/triggers', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -56,59 +57,37 @@ const Workspace = (props) => {
             });
 
             if (response) {
-                setRules(response.data);
+                console.log(response.data);
+                setTriggers(response.data);
             } else {
                 toastr.error(error, 'Hiba történt');
             }
             setLoading(false);
         }
         await getWorkspaces();
-        await getRules();
-
+        await getTriggers();
 
     }, [props.isLoggedIn, id]);
 
-    async function deleteRule(ruleId) {
-        setLoading(true);
-        let error;
-        const response = await backendApi.delete(`/workspaces/rules/${ruleId}`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }).catch((err) => {
-            error = err;
-            console.log(err);
-        });
-
-        if (response) {
-            toastr.success(response.message, 'Sikeres törlés');
-        } else {
-            toastr.error(error, 'Hiba történt');
-        }
-        setLoading(false);
-    }
+    const getFormattedTriggers =() => {
+        
+    };
 
     return ( <Page noCard > 
-                <h1>{workspaceName} workspace kezelése</h1>
-                <Button onClick={() => window.location.href = `/workspaces/${id}/rules/add`} >
-                    Új szabály hozzáadása 
-                </Button> 
+                <h1>Új szabály hozzáadása {workspaceName} workspace-hez</h1>
                 {loading && <h3>Töltés...</h3>}
-                {(loading === false && rules.length === 0) && <h3>Önnek nincs egy szabálya sem.</h3>}
-                <div className={classes.rulesList}>
-                    {rules.map(element => {
-                        return (
-                                    <div key={element.rule_id}>
-                                        <div className={classes.rulesListItem}>
-                                            <span>{element.trigger.name} -&gt; {element.response.name}</span>
-                                            <Button onClick={() => deleteRule(element.rule_id)} color="red" >
-                                                Törlés
-                                            </Button> 
-                                        </div>
-                                    </div>
-                                );
-                    })}
-                </div> 
+                <SelectField label="Eseményindító" reduxFormData={{
+                    input: {},
+                    meta: {
+                        touched: false,
+                        error: ""
+                    },
+                }} options={[
+                    {
+                        label: "Lorem ipsum dolor sit amet",
+                        value: "option_3"
+                    }
+                ]}/>
             </Page>
     );
 };

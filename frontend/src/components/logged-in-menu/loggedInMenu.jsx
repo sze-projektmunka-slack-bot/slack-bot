@@ -19,6 +19,9 @@ const LoggedInMenu = (props) => {
             <Link to="/workspaces">
                 Workspaces
             </Link>
+            <Link to="/presentation">
+                Sablon bemutató
+            </Link>
             <Button className={classNames(classes.logout)} isHollow
                 onClick={onLogoutButtonClick}>
                 Kijelentkezés
