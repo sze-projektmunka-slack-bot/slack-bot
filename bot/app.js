@@ -10,7 +10,7 @@ if (result.error) {
 
 let installations = await fetchBackend('/api/bot/workspaces');
 setInterval(async function() {
-    installations = await fetchBackend('/api/bot/rules');
+    installations = await fetchBackend('/api/bot/workspaces');
 }, process.env.FETCH_INTERVAL);
 
 let rules = await fetchBackend('/api/bot/rules');
