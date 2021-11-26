@@ -66,15 +66,15 @@ class RuleController extends Controller {
             $rules["response.$key"] = implode("|", $parts);
         }
 
-        $inputValues = $request->validate($rules);
+        $request->validate($rules);
 
         Rule::updateOrCreate([
             "workspace_id"       => $request->workspace_id,
             "trigger_identifier" => $trigger::GetIdentifier(),
-            "trigger_inputs"     => json_encode($inputValues["trigger"])
+            "trigger_inputs"     => json_encode($request->get("trigger"))
         ], [
             "response_identifier" => $response::GetIdentifier(),
-            "response_inputs"     => json_encode($inputValues["response"])
+            "response_inputs"     => json_encode($request->get("response"))
         ]);
 
         return response()->noContent(201);
