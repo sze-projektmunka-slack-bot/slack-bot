@@ -3,6 +3,7 @@
 namespace App\Classes\Triggers;
 
 use App\Classes\BaseTrigger;
+use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
 
@@ -25,7 +26,8 @@ class Message extends BaseTrigger implements TriggerInterface {
     protected string $type = "message";
 
     protected array $responses = [
-        SimpleMessage::class
+        SimpleMessage::class,
+        Markdown::class
     ];
 
     protected array $validationRules = [
