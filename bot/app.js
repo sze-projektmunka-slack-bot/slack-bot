@@ -56,13 +56,19 @@ app.event(/.*/, async ({ event, client }) => {
 
                 if (rule.listen.type == 'message') {
                     if (rule.listen.content == event.text && !event.subtype) {
-                        sendMessage(event, client, rule.response.content);
+                        sendMessage(event,
+                            client,
+                            rule.response.content,
+                            rule.response.notification_text);
                     }
                 }
 
                 else if (rule.listen.type == 'event') {
                     if (rule.listen.content == event.type) {
-                        sendMessage(event, client, rule.response.content);
+                        sendMessage(event,
+                            client,
+                            rule.response.content,
+                            rule.response.notification_text);
                     }
                 }
             }
@@ -89,19 +95,12 @@ async function fetchBackend(path) {
     return await response.json();
 }
 
-// A content egyenlore csak string, de kesobb alljunk at blocksra
-async function sendMessage(event, client, content) {
+async function sendMessage(event, client, content, notificationText) {
     await client.chat.postMessage({
         channel: event.channel,
         blocks: [
-            {
-                type: 'section',
-                text: {
-                    type: 'mrkdwn',
-                    text: content
-                }
-            }
+            JSON.parse(content)
         ],
-        text: 'Response.'
+        text: notificationText
     });
 }
