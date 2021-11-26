@@ -3,6 +3,7 @@
 namespace App\Classes\Triggers;
 
 use App\Classes\BaseTrigger;
+use App\Classes\Responses\Image;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
@@ -21,7 +22,8 @@ class Mention extends BaseTrigger implements TriggerInterface {
 
     protected array $responses = [
         SimpleMessage::class,
-        Markdown::class
+        Markdown::class,
+        Image::class,
     ];
 
     protected array $validationRules = [];

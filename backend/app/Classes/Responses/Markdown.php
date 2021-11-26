@@ -14,7 +14,7 @@ class Markdown extends BaseResponse implements ResponseInterface {
     protected string $name = "Markdown";
 
     protected array $inputs = [
-        "input" => [
+        [
             "type"     => "textarea",
             "required" => true,
             "name"     => "response_markdown_message"
@@ -36,5 +36,9 @@ class Markdown extends BaseResponse implements ResponseInterface {
 				"text": "'.$this->inputValues["response_markdown_message"].'"
 			}
 		}';
+    }
+
+    public function GetNotificationText() :string {
+        return $this->inputValues['response_markdown_message'];
     }
 }

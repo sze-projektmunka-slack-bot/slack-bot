@@ -12,4 +12,5 @@ interface ResponseInterface {
     public function GetValidationRules() :array;
 
     public function GetPayload() :string;
+    public function GetNotificationText() :string;
 }

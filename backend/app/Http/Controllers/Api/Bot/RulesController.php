@@ -25,6 +25,7 @@ class RulesController extends Controller {
                 ],
                 "response" => [
                     "type" =>  $response->GetType(),
+                    "notification_text" => $response->GetNotificationText(),
                     "content" => $response->GetPayload()
                 ]
             ];

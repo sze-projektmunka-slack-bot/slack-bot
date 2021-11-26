@@ -14,7 +14,7 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
     protected string $name = "Egyszerű üzenet";
 
     protected array $inputs = [
-        "input" => [
+        [
             "type"     => "text",
             "required" => true,
             "name"     => "response_message"
@@ -29,5 +29,9 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
 
     public function GetPayload(): string {
         return "{\"text\":`{$this->inputValues['response_message']}`}";
+    }
+
+    public function GetNotificationText() :string {
+        return $this->inputValues['response_message'];
     }
 }

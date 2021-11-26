@@ -3,6 +3,7 @@
 namespace App\Classes\Triggers;
 
 use App\Classes\BaseTrigger;
+use App\Classes\Responses\Image;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
@@ -16,7 +17,7 @@ class Message extends BaseTrigger implements TriggerInterface {
     protected string $name = "Üzenet";
 
     protected array $inputs = [
-        "input" => [
+        [
             "type"     => "text",
             "required" => true,
             "name"     => "trigger_message"
@@ -27,7 +28,8 @@ class Message extends BaseTrigger implements TriggerInterface {
 
     protected array $responses = [
         SimpleMessage::class,
-        Markdown::class
+        Markdown::class,
+        Image::class
     ];
 
     protected array $validationRules = [
