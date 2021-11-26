@@ -57,10 +57,16 @@ class RuleController extends Controller {
             );
         }
 
-        $inputValues = $request->validate([
-            "trigger"  => $trigger->GetValidationRules(),
-            "response" => $response->GetValidationRules()
-        ]);
+        $rules = [];
+
+        foreach ($trigger->GetValidationRules() as $key => $parts) {
+            $rules["trigger.$key"] = implode("|", $parts);
+        }
+        foreach ($response->GetValidationRules() as $key => $parts) {
+            $rules["response.$key"] = implode("|", $parts);
+        }
+
+        $inputValues = $request->validate($rules);
 
         Rule::updateOrCreate([
             "workspace_id"       => $request->workspace_id,
