@@ -24,6 +24,14 @@ Route::group([
 });
 
 Route::group([
+    "prefix" => "responses",
+    "as"     => "responses.",
+    "middleware" => "auth:sanctum"
+], function () {
+    Route::get("/{response_identifier}", [\App\Http\Controllers\Api\ResponseController::class, "get"])->name("get");
+});
+
+Route::group([
     "prefix"     => "workspaces",
     "as"         => "workspaces.",
     "middleware" => "auth:sanctum"

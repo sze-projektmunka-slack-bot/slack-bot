@@ -3,20 +3,25 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Services\ResponseService;
 use Illuminate\Http\Request;
 
 class ResponseController extends Controller {
     public function get(string $response_identifier) {
 
-        $response_class = null;
+        $data = [];
 
-        foreach(app("registered_responses") as $response) {
-            if($response::GerIdentifier() == $response_identifier) {
-                $response_class = $response;
+        foreach(ResponseService::GetRegisteredResponses() as $response) {
+            $response = new $response();
+            if($response->GetIdentifier() == $response_identifier) {
+                $data = [
+                    "identifier" => $response->GetIdentifier(),
+                    "name" => $response->GetName(),
+                    "inputs" => $response->GetInputs(),
+                ];
             }
         }
 
-
-
+        return response()->json($data);
     }
 }
