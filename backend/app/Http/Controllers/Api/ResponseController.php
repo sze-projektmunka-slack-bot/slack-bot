@@ -22,6 +22,10 @@ class ResponseController extends Controller {
             }
         }
 
+        if (empty($data)) {
+            return response()->json([], 404);
+        }
+
         return response()->json($data);
     }
 }

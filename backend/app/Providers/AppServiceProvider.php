@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\Triggers\Mention;
 use App\Classes\Triggers\Message;
@@ -35,7 +36,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton("registered_responses", function () {
             return [
-                SimpleMessage::class
+                SimpleMessage::class,
+                Markdown::class
             ];
         });
     }
