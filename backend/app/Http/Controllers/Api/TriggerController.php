@@ -13,14 +13,17 @@ class TriggerController extends Controller {
         foreach (TriggerService::GetRegisteredTriggers() as $trigger) {
             $responses = [];
 
-            foreach($trigger::GetResponses() as $response) {
-                $responses[] = $response::GetIdentifier();
+            $trigger = new $trigger();
+
+            foreach($trigger->GetResponses() as $response) {
+                $response = new $response();
+                $responses[] = $response->GetIdentifier();
             }
 
             $triggers[] = [
-                "identifier" => $trigger::GetIdentifier(),
-                "name" => $trigger::GetName(),
-                "inputs" => $trigger::GetInputs(),
+                "identifier" => $trigger->GetIdentifier(),
+                "name" => $trigger->GetName(),
+                "inputs" => $trigger->GetInputs(),
                 "responses" => $responses,
             ];
         }
