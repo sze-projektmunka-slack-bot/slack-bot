@@ -84,6 +84,8 @@ app.event(/.*/, async ({ event, client }) => {
 app.action(/.*/, async ({ action, ack, say }) => {
     await ack();
 
+    console.log(action);
+
     if (typeof (rules) !== 'object' || rules === null) {
         console.error('Rule error: type of rules is ' + typeof (rules));
         return false;
@@ -99,7 +101,6 @@ app.action(/.*/, async ({ action, ack, say }) => {
             });
         }
     }
-
 });
 
 
