@@ -28,7 +28,14 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
     ];
 
     public function GetPayload(): string {
-        return "{\"text\":`{$this->inputValues['response_message']}`}";
+        return '
+        {
+            "type": "section",
+			"text": {
+                "type": "plain_text",
+				"text": "'. $this->inputValues["response_message"] .'"
+			}
+		}';
     }
 
     public function GetNotificationText() :string {
