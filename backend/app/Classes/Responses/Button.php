@@ -57,7 +57,7 @@ class Button extends BaseResponse implements ResponseInterface {
 					"text": "' . $this->inputValues["button_text"] . '",
 					"emoji": true
 				},
-				"value": ' . $this->workspaceId . ',
+				"value": "' . $this->workspaceId . '",
 				"action_id": "' . \Str::slug($this->inputValues["button_action"]) . '"
 			}
 		}';
