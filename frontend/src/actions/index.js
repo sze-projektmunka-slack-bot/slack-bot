@@ -64,7 +64,12 @@ export const logout = () => {
             }
         }).then(res => {
             localStorage.removeItem('token');
-        }).catch();
+        }).catch(error => {
+            localStorage.removeItem('token');
+            dispatch({
+                type: 'auth/logout'
+            });
+        });
         dispatch({
             type: 'auth/logout'
         });

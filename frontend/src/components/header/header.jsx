@@ -3,6 +3,7 @@ import classes from "./header.module.scss";
 import { connect } from 'react-redux';
 import { logout } from '../../actions';
 import LoggedInMenu from "../logged-in-menu/loggedInMenu";
+import LoggedOutMenu from "../logged-out-menu/loggedOutMenu";
 
 const Header = (props) => {
    return (
@@ -12,6 +13,11 @@ const Header = (props) => {
                props.isLoggedIn 
                && 
                <LoggedInMenu />
+            }
+            {
+               !props.isLoggedIn 
+               && 
+               <LoggedOutMenu />
             }
          </div>
       </header>
