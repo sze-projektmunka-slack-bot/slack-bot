@@ -52,7 +52,7 @@ class RuleController extends Controller {
 
         if (empty($response)) {
             return response()->json(
-                ["message" => "Hibás válasz!", "errors" => ["trigger_identifier" => "Ez a válasz nem létezik!"]],
+                ["message" => "Hibás válasz!", "errors" => ["response_identifier" => "Ez a válasz nem létezik!"]],
                 404
             );
         }
