@@ -10,8 +10,14 @@ class BaseResponse {
 
     protected array $inputValues;
 
+    protected int $workspaceId = -1;
+
     public function SetInputValues(array $inputValues): void {
         $this->inputValues = $inputValues;
+    }
+
+    public function SetWorkspaceId(int $workspaceId): void {
+        $this->workspaceId = $workspaceId;
     }
 
     public function GetName() :string {

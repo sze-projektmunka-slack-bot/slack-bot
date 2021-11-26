@@ -16,6 +16,7 @@ class RulesController extends Controller {
 
             $trigger->SetInputValues(json_decode($rule->trigger_inputs, true));
             $response->SetInputValues(json_decode($rule->response_inputs, true));
+            $response->SetWorkspaceId($rule->workspace_id);
 
             return [
                 "workspace_id" => $rule->workspace_id,
