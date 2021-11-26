@@ -74,8 +74,8 @@ class RuleController extends Controller {
         return response()->noContent(201);
     }
 
-    public function destroy(Workspace $workspace, Rule $rule) {
-        if ($rule->workspace_id != $workspace->id || $rule->workspace->user_id != auth()->id()) {
+    public function destroy(Rule $rule) {
+        if ($rule->workspace->user_id != auth()->id()) {
             return response()->json([
                 "message" => "Ehhez a szabályhoz nincs hozzáférésed!",
             ], 401);

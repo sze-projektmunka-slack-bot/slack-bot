@@ -45,7 +45,7 @@ Route::group([
         "middleware" => "auth:sanctum"
     ], function () {
         Route::get("/{workspace:id}", [\App\Http\Controllers\Api\RuleController::class, "list"])->name("list");
-        Route::delete("/{workspace:id}/{rule:id}", [\App\Http\Controllers\Api\RuleController::class, "destroy"])->name("destroy");
+        Route::delete("/{rule:id}", [\App\Http\Controllers\Api\RuleController::class, "destroy"])->name("destroy");
         Route::post("/", [\App\Http\Controllers\Api\RuleController::class, "store"])->name("store");
     });
 });
