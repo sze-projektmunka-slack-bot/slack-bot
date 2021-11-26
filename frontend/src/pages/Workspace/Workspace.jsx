@@ -101,7 +101,14 @@ const Workspace = (props) => {
                         return (
                                     <div key={element.rule_id}>
                                         <div className={classes.rulesListItem}>
-                                            <span>{element.trigger.name} -&gt; {element.response.name}</span>
+                                        <span>{element.trigger.name} -&gt; {element.response.name}</span>
+
+                                            <pre>
+                                                {JSON.stringify(element.trigger,null,2)}
+                                            </pre>
+                                            <pre>
+                                                {JSON.stringify(element.response,null,2)}
+                                            </pre>
                                             <Button onClick={() => deleteRule(element.rule_id)} color="red" >
                                                 Törlés
                                             </Button> 

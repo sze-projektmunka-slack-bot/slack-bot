@@ -13,6 +13,15 @@
         span{
             height: fit-content;
         }
+        pre{
+            color: grey;
+            font-size: 0.5em;
+            max-width: 30%;
+            word-break: break-all;
+            white-space: pre-wrap;
+            overflow: hidden;
+            max-height: 10em;
+        }
 
     }
     .rulesListItem:hover{
