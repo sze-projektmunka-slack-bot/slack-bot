@@ -10,4 +10,8 @@ class Workspace extends Model {
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function rules() {
+        return $this->hasMany(Rule::class, "workspace_id", "id");
+    }
 }

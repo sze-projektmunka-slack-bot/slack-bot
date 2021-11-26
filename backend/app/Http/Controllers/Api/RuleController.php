@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Rule\DeleteRule;
 use App\Http\Requests\Rule\StoreRuleRequest;
 use App\Models\Rule;
 use App\Models\Workspace;
@@ -12,17 +13,23 @@ use App\Services\TriggerService;
 class RuleController extends Controller {
 
     public function list(Workspace $workspace) {
-        if($workspace->user_id != auth()->id()){
+        if ($workspace->user_id != auth()->id()) {
             return response()->json([
                 "message" => "Ehhez a szerverhez nincs hozzáférésed!",
-            ],401);
+            ], 401);
         }
 
         $rules = Rule::where("workspace_id", $workspace->id)->get()->map(function ($rule) {
+            $trigger_data = json_decode($rule->trigger_inputs, true);
+            $trigger_data["name"] = TriggerService::GetTrigger($rule->trigger_identifier)->GetName();
+
+            $response_data = json_decode($rule->response_inputs, true);
+            $response_data["name"] = ResponseService::GetResponse($rule->response_identifier)->GetName();
             return [
                 "workspace_id" => $rule->workspace_id,
-                "trigger"      => json_decode($rule->trigger_inputs, true),
-                "response"     => json_decode($rule->response_inputs, true)
+                "rule_id"      => $rule->id,
+                "trigger"      => $trigger_data,
+                "response"     => $response_data
             ];
         });
 
@@ -65,5 +72,17 @@ class RuleController extends Controller {
         ]);
 
         return response()->noContent(201);
+    }
+
+    public function destroy(Workspace $workspace, Rule $rule) {
+        if ($rule->workspace_id != $workspace->id || $rule->workspace->user_id != auth()->id()) {
+            return response()->json([
+                "message" => "Ehhez a szabályhoz nincs hozzáférésed!",
+            ], 401);
+        }
+
+        $rule->delete();
+
+        return response()->json(null);
     }
 }
