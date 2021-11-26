@@ -17,19 +17,21 @@ class Image extends BaseResponse implements ResponseInterface {
         [
             "type"     => "url",
             "required" => true,
-            "name"     => "response_image_url"
+            "name"     => "response_image_url",
+            "label"    => "Kép url",
         ],
         [
             "type"     => "text",
             "required" => true,
-            "name"     => "response_image_alt_text"
+            "name"     => "response_image_alt_text",
+            "label"    => "Alternatív szöveg",
         ]
     ];
 
     protected string $type = "say";
 
     protected array $validationRules = [
-        "response_image_url" => ["required", "url"],
+        "response_image_url"      => ["required", "url"],
         "response_image_alt_text" => ["required", "string"]
     ];
 
@@ -37,12 +39,12 @@ class Image extends BaseResponse implements ResponseInterface {
         return '
         {
 			"type": "image",
-			"image_url": "'.$this->inputValues["response_image_url"].'",
-			"alt_text": "'. $this->inputValues["response_image_alt_text"].'"
+			"image_url": "' . $this->inputValues["response_image_url"] . '",
+			"alt_text": "' . $this->inputValues["response_image_alt_text"] . '"
 		}';
     }
 
-    public function GetNotificationText() :string {
+    public function GetNotificationText(): string {
         return $this->inputValues['response_image_alt_text'];
     }
 }

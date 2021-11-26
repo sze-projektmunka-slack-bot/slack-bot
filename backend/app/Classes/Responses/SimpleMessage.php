@@ -17,7 +17,8 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
         [
             "type"     => "text",
             "required" => true,
-            "name"     => "response_message"
+            "name"     => "response_message",
+            "label"    => "Szöveg"
         ]
     ];
 
@@ -33,12 +34,12 @@ class SimpleMessage extends BaseResponse implements ResponseInterface {
             "type": "section",
 			"text": {
                 "type": "plain_text",
-				"text": "'. $this->inputValues["response_message"] .'"
+				"text": "' . $this->inputValues["response_message"] . '"
 			}
 		}';
     }
 
-    public function GetNotificationText() :string {
+    public function GetNotificationText(): string {
         return $this->inputValues['response_message'];
     }
 }

@@ -20,7 +20,8 @@ class Message extends BaseTrigger implements TriggerInterface {
         [
             "type"     => "text",
             "required" => true,
-            "name"     => "trigger_message"
+            "name"     => "trigger_message",
+            "label"    => "Szöveg"
         ]
     ];
 
