@@ -86,22 +86,22 @@ async function fetchBackend(path) {
         }
     });
 
-    const result = await response.json();
-
-    return result;
+    return await response.json();
 }
 
 // A content egyenlore csak string, de kesobb alljunk at blocksra
 async function sendMessage(event, client, content) {
     await client.chat.postMessage({
         channel: event.channel,
-        blocks: [{
-            type: 'section',
-            text: {
-                type: 'mrkdwn',
-                text: content
+        blocks: [
+            {
+                type: 'section',
+                text: {
+                    type: 'mrkdwn',
+                    text: content
+                }
             }
-        }],
+        ],
         text: 'Response.'
     });
 }
