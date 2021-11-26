@@ -17,7 +17,7 @@ class TriggerController extends Controller {
 
             foreach($trigger->GetResponses() as $response) {
                 $response = new $response();
-                $responses[] = $response->GetIdentifier();
+                $responses[$response->GetName()] = $response->GetIdentifier();
             }
 
             $triggers[] = [
