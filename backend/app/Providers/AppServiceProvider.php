@@ -6,6 +6,7 @@ use App\Classes\Responses\Button;
 use App\Classes\Responses\Image;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
+use App\Classes\Triggers\Action;
 use App\Classes\Triggers\Mention;
 use App\Classes\Triggers\Message;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
             return [
                 Mention::class,
                 Message::class,
+                Action::class
             ];
         });
 
