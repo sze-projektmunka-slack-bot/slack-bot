@@ -40,6 +40,11 @@ const app = new App({
 });
 
 app.event(/.*/, async ({ event, client }) => {
+    if (typeof (rules) !== 'object' || rules === null) {
+        console.error('Rule error: type of rules is ' + typeof (rules));
+        return false;
+    }
+
     let teamId;
     let selfId;
 
@@ -74,6 +79,27 @@ app.event(/.*/, async ({ event, client }) => {
             }
         }
     }
+});
+
+app.action(/.*/, async ({ action, ack, say }) => {
+    await ack();
+
+    if (typeof (rules) !== 'object' || rules === null) {
+        console.error('Rule error: type of rules is ' + typeof (rules));
+        return false;
+    }
+
+    for (const rule of rules) {
+        if (rule.listen.content == action.action_id) {
+            await say({
+                blocks: [
+                    JSON.parse(rule.response.content)
+                ],
+                text: rule.response.notification_text
+            });
+        }
+    }
+
 });
 
 
