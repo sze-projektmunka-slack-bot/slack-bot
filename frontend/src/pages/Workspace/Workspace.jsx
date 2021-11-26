@@ -81,7 +81,8 @@ const Workspace = (props) => {
         });
 
         if (response) {
-            toastr.success(response.message, 'Sikeres törlés');
+            setRules(rules.filter(rule => rule.rule_id !== ruleId));
+            toastr.success("A szabály sikeresen törölve lett!", 'Sikeres törlés');
         } else {
             toastr.error(error, 'Hiba történt');
         }

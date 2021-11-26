@@ -10,7 +10,7 @@ const SelectField = (props) => {
     //      label: 'test'
     //  },
     // }
-    const {label, className, style, options, reduxFormData} = props;
+    const {label, className, style, options, reduxFormData, onChange, name,required} = props;
 
     return (
         <div className={classNames(classes.inputGroup)}>
@@ -18,10 +18,11 @@ const SelectField = (props) => {
             {reduxFormData && reduxFormData.meta.touched && reduxFormData.meta.error &&
             <span className={classes.error}>{reduxFormData.meta.error}</span>}
             <div className={classes.selectWrapper}>
-                <select {...(reduxFormData ? (reduxFormData.input) : {})} style={{...(style ? style : {})}}
+                <select {...(reduxFormData ? (reduxFormData.input) : {onChange:onChange, name:name,required:required})} style={{...(style ? style : {})}}
                         className={classNames(className,
                             classes.input,
                             reduxFormData && reduxFormData.meta.touched && reduxFormData.meta.error ? classes.inputError : "")}
+                        
                 >
                     {options.map((option, key) => {
                         return <option key={key} value={option.value}>{option.label}</option>
