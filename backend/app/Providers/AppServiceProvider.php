@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Classes\Responses\Button;
 use App\Classes\Responses\Image;
+use App\Classes\Responses\ImageText;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\Triggers\Action;
@@ -43,7 +44,8 @@ class AppServiceProvider extends ServiceProvider
                 SimpleMessage::class,
                 Markdown::class,
                 Image::class,
-                Button::class
+                Button::class,
+                ImageText::class
             ];
         });
     }

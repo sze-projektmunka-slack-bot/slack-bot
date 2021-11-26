@@ -5,6 +5,7 @@ namespace App\Classes\Triggers;
 use App\Classes\BaseTrigger;
 use App\Classes\Responses\Button;
 use App\Classes\Responses\Image;
+use App\Classes\Responses\ImageText;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
 use App\Classes\TriggerInterface;
@@ -32,7 +33,8 @@ class Action extends BaseTrigger implements TriggerInterface {
         SimpleMessage::class,
         Markdown::class,
         Image::class,
-        Button::class
+        Button::class,
+        ImageText::class
     ];
 
     protected array $validationRules = [
