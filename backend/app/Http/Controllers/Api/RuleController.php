@@ -12,7 +12,7 @@ use App\Services\TriggerService;
 class RuleController extends Controller {
 
     public function list(Workspace $workspace) {
-        if($workspace->user_id !== auth()->id()){
+        if($workspace->user_id != auth()->id()){
             return response()->json([
                 "message" => "Ehhez a szerverhez nincs hozzáférésed!",
             ],401);
