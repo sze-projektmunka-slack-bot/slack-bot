@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Classes\Responses\Button;
 use App\Classes\Responses\Image;
 use App\Classes\Responses\Markdown;
 use App\Classes\Responses\SimpleMessage;
@@ -39,7 +40,8 @@ class AppServiceProvider extends ServiceProvider
             return [
                 SimpleMessage::class,
                 Markdown::class,
-                Image::class
+                Image::class,
+                Button::class
             ];
         });
     }
