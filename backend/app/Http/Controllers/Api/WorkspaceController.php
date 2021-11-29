@@ -48,7 +48,7 @@ class WorkspaceController extends Controller {
             ], 400);
         }
 
-        if (Workspace::where("team_id", $oauth_response["team"]["id"])->where("user_id", "<>", auth()->id())) {
+        if (Workspace::where("team_id", $oauth_response["team"]["id"])->where("user_id", "<>", auth()->id())->exists()) {
             return response()->json([
                 "message" => "A hozzáadás során hiba lépett fel! Ezt a szervert egy másik felhasználó már hozzáadta!"
             ], 400);
