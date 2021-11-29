@@ -13,7 +13,7 @@ import Workspace from "./pages/Workspace/Workspace";
 import NewRule from "./pages/NewRule/NewRule";
 
 const defRouteBeforeLogIn = "/home";
-const defRouteAfterLogIn = "/presentation";
+const defRouteAfterLogIn = "/workspaces";
 
 const App = (props) => {
 
