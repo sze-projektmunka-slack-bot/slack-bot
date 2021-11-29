@@ -68,11 +68,10 @@ class RuleController extends Controller {
 
         $request->validate($rules);
 
-        Rule::updateOrCreate([
-            "workspace_id"       => $request->workspace_id,
-            "trigger_identifier" => $trigger::GetIdentifier(),
-            "trigger_inputs"     => json_encode($request->get("trigger"))
-        ], [
+        Rule::create([
+            "workspace_id"        => $request->workspace_id,
+            "trigger_identifier"  => $trigger::GetIdentifier(),
+            "trigger_inputs"      => json_encode($request->get("trigger")),
             "response_identifier" => $response::GetIdentifier(),
             "response_inputs"     => json_encode($request->get("response"))
         ]);
