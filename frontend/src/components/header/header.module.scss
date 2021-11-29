@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.header {
+   background: white;
+   width: 100%;
+
+   .container {
+      width: 95%;
+      margin: 1.5rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @include md {
+         width: 90%;
+      }
+      @include lg {
+         width: 70%;
+      }           
+   }
+}

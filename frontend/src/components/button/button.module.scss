@@ -1,0 +1,77 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  text-wrap: normal;
+  max-width: 100%;
+  text-align: center;
+  padding: 0.5rem 2.5rem;
+  color: white;
+  border-radius: 0.250rem;
+  margin: 0.5rem 0.5rem 0.5rem 0;
+  border: 2px solid;
+  transition: all 200ms ease-in-out;
+  font-weight: 500;
+  font-size: $font-small-sm-button;
+  @include lg{
+    font-size: $font-large-sm-button;
+  }
+  &.large {
+    font-size: $font-small-lg-button;
+    @include lg{
+      font-size: $font-large-lg-button;
+    }
+  }
+
+  &.blue {
+    background-color: $main-blue;
+    border-color: $main-blue;
+
+    &.hollow {
+      background-color: transparent;
+      color: $main-blue;
+    }
+
+    &:hover {
+      background-color: $dark-blue;
+      border-color: $dark-blue;
+      color: white;
+    }
+  }
+
+  &.yellow {
+    background-color: $main-yellow;
+    border-color: $main-yellow;
+
+
+    &.hollow {
+      background-color: white;
+      color: $main-yellow;
+    }
+
+    &:hover {
+      background-color: $dark-yellow;
+      border-color: $dark-yellow;
+      color: white;
+    }
+  }
+
+  &.red {
+    background-color: $main-red;
+    border-color: $main-red;
+
+    &.hollow {
+      background-color: white;
+      color: $main-red;
+    }
+
+    &:hover {
+      background-color: $dark-red;
+      border-color: $dark-red;
+      color: white;
+    }
+  }
+
+}

@@ -1,0 +1,10 @@
+<svg id="Component_7_1" data-name="Component 7 – 1" xmlns="http://www.w3.org/2000/svg" width="274" height="41" viewBox="0 0 274 41" shape-rendering="geometricPrecision">
+  <text id="Slack_Bot_Configurator" data-name="Slack Bot Configurator" transform="translate(48 28)" fill="#1b2c3e" font-size="22" font-family="SegoeUI-Semibold, Segoe UI" font-weight="600"><tspan x="0" y="0">Slack Bot Configurator</tspan></text>
+  <g id="Component_3_1" data-name="Component 3 – 1">
+    <rect id="Rectangle_19" data-name="Rectangle 19" width="38" height="41" rx="5" fill="#1789fc"/>
+    <circle id="Ellipse_14" data-name="Ellipse 14" cx="7.5" cy="7.5" r="7.5" transform="translate(4 9)" fill="#fff"/>
+    <circle id="Ellipse_15" data-name="Ellipse 15" cx="7.5" cy="7.5" r="7.5" transform="translate(20 9)" fill="#fff"/>
+    <circle id="Ellipse_16" data-name="Ellipse 16" cx="3.5" cy="3.5" r="3.5" transform="translate(24 13)" fill="#1b2c3e"/>
+    <circle id="Ellipse_17" data-name="Ellipse 17" cx="3.5" cy="3.5" r="3.5" transform="translate(8 13)" fill="#1b2c3e"/>
+  </g>
+</svg>

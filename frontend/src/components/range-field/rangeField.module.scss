@@ -1,0 +1,42 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.inputGroup {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem 0;
+
+  & label{
+    margin-top: -1.3rem;
+    @include md {
+      margin-top: -1.2rem;
+    }
+    @include lg {
+      margin-top: -1.1rem;
+    }
+    @include xl {
+      margin-top: -1rem;
+    }
+  }
+  p {
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
+  }
+  label{
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
+  }
+}
+.error {
+  color: $dark-red;
+  font-weight: bold;
+  font-size: $font-small-input-label-text;
+  @include lg{
+    font-size: $font-large-input-label-text;
+  }
+ }

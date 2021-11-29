@@ -1,0 +1,80 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+.inputGroup {
+
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+
+  .error {
+    color: $main-red;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+    font-size: $font-small-input-label-text;
+    @include lg{
+      font-size: $font-large-input-label-text;
+    }
+  }
+
+  label {
+    font-weight: bold;
+    font-size: $font-small-label;
+    @include lg{
+      font-size: $font-large-label;
+    }
+  }
+
+  .selectWrapper {
+    position: relative;
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      content: "\f078";
+      font-size: 1rem;
+      display: flex;
+      position: absolute;
+      top: 1rem;
+      right: 0.5rem;
+      background: darken($grey, 50);
+      width: 1.2rem !important;
+      height: 1.2rem !important;
+      z-index: 50;
+      border-radius: 0.25rem;
+      justify-content: center;
+      align-content: center;
+      color: white;
+      @include lg {
+        top: 0.6rem;
+        right: 0.5rem;
+        font-size: 1rem;
+        line-height: 1.3rem;
+      }
+    }
+    .input {
+      -webkit-appearance: none;
+      width: 100%;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 0.25rem;
+      background-color: $grey;
+      position: relative;
+      font-size: $font-small-input-label-text;
+      @include lg{
+        font-size: $font-large-input-label-text;
+      }
+
+      &.inputError {
+        border: 1px solid $main-red;
+      }
+
+      @include lg {
+        padding: 0.6rem 0.8rem;
+      }
+    }
+  }
+}
